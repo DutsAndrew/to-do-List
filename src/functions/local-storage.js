@@ -1,0 +1,7 @@
+export {
+    storeLocally,
+}
+
+function storeLocally() {
+
+}
