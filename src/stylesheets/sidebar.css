@@ -1,0 +1,92 @@
+.side-bar {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    background-color: #2B2B2B;
+    width: 12vw;
+    height: 85vh;
+}
+
+.side-bar-top-items {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0;
+    height: 50px;
+    width: 15vw;
+}
+
+#due-today {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.due-today-svg {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: center / cover no-repeat url(../svgs/due-today.svg);
+    filter: invert(100%) sepia(1%) saturate(157%) hue-rotate(190deg) brightness(116%) contrast(90%);
+}
+
+#due-this-week {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.due-this-week-svg {
+    background: center / contain no-repeat url(../svgs/due-this-week.svg);
+    filter: invert(100%) sepia(1%) saturate(157%) hue-rotate(190deg) brightness(116%) contrast(90%);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+#due-this-month {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.due-this-month-svg {
+    background: center / contain no-repeat url(../svgs/due-this-month.svg);
+    filter: invert(100%) sepia(1%) saturate(157%) hue-rotate(190deg) brightness(116%) contrast(90%);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.due-text {
+    color: #f2f2f2;
+}
+
+.project-title-text {
+    color: #f2f2f2;
+}
+
+/* To hold projects and append to "project-title" */
+/* .project-holder {
+    color: #f2f2f2;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 0;
+    height: 50px;
+    width: 15vw;
+} */
+
+.archived-projects-text {
+    color: #f2f2f2;
+}

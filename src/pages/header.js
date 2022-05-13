@@ -3,7 +3,7 @@ export {
 }
 
 function headerLoad() {
-    const content = document.getElementById('content');
+    const content = document.querySelector('#content');
 
     const header = document.createElement('div');
         header.classList.add('header');

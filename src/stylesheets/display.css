@@ -1,0 +1,15 @@
+.display-screen {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100vw;
+    height: 85vh;
+    background-color: #181818;
+}
+
+.display-screen-w-sidebar {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 85vw;
+    height: 85vh;
+    background-color: #181818;
+}
