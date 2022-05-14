@@ -1,3 +1,6 @@
+// Plug-ins
+import { compareAsc, format } from 'date-fns';
+
 // All functions for the To-do list to work
 import { changePriority } from './functions/change-priority';
 import { createProject } from './functions/create-project';
@@ -9,7 +12,7 @@ import { headerLoad } from './pages/header';
 import { loadSideBar } from './pages/side-bar';
 import { sideBarController } from './pages/side-bar';
 import { loadHome } from './functions/load-home';
-import { addItem } from './pages/add-item';
+import { addItemController } from './pages/add-item';
 import { displayLoad } from './pages/display';
 import { setPriority } from './functions/set-priority';
 import { viewAllProjects } from './functions/view-all-projects';
@@ -21,6 +24,7 @@ import './stylesheets/header.css';
 import './stylesheets/sidebar.css';
 import './stylesheets/todos.css';
 import './stylesheets/display.css';
+import './stylesheets/add-item.css';
 
 // Page Load
 headerLoad();
@@ -35,4 +39,4 @@ displayLoad();
         homeButton.addEventListener('click', loadHome);
 
     const addItemButton = document.querySelector('.add-item-button');
-        addItemButton.addEventListener('click', addItem);
+        addItemButton.addEventListener('click', addItemController);

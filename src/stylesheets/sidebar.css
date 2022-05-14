@@ -10,9 +10,9 @@
 .side-bar-top-items {
     display: flex;
     flex-flow: row nowrap;
-    margin: 0;
     height: 50px;
     width: 15vw;
+    padding-left: 15px;
 }
 
 #due-today {
