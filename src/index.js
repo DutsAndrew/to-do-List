@@ -14,7 +14,6 @@ import { sideBarController } from './pages/side-bar';
 import { loadHome } from './functions/load-home';
 import { addItemController } from './pages/add-item';
 import { displayLoad } from './pages/display';
-import { setPriority } from './functions/set-priority';
 import { viewAllProjects } from './functions/view-all-projects';
 import { viewAllToDos } from './functions/view-all-to-dos';
 import { viewItem } from './functions/view-item';

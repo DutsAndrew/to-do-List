@@ -2,6 +2,9 @@ export {
     addItemController,
 }
 
+import { setPriority } from '../functions/set-priority';
+import flagSVG from '../svgs/flag.svg';
+
 let addItemFormOpen = false;
 
 function addItemController() {
@@ -71,9 +74,66 @@ function addItem() {
                         inputForCalendar.min = today;
                         inputForCalendar.max = "2100-01-01";
 
-                    const priorityButton = document.createElement('div');
-                        priorityButton.classList.add('priority-button');
-                        priorityButton.textContent = "Select Priority";
+                    const priorityButtonContainer = document.createElement('div');
+                        priorityButtonContainer.classList.add('priority-button-container');
+                        priorityButtonContainer.setAttribute('id', 'priority-container');
+
+                        const labelForPriority = document.createElement('label');
+                            labelForPriority.classList.add('label-priority');
+                            labelForPriority.for = "priority-buttons";
+                            labelForPriority.textContent = "Priority:";
+
+                        const priorityButton1 = document.createElement('div');
+                            priorityButton1.setAttribute('id', 'priority-button-selector-1');
+                            priorityButton1.classList.add('priority-button');
+                            priorityButton1.textContent = "Priority 1";
+                            priorityButton1.addEventListener('click', setPriority);
+
+                            const priorityImg1 = document.createElement('img');
+                                priorityImg1.setAttribute('id', 'priority-flag');
+                                priorityImg1.classList.add('priority-1');
+                                priorityImg1.src = flagSVG;
+
+                                priorityButton1.appendChild(priorityImg1);
+
+                        const priorityButton2 = document.createElement('div');
+                            priorityButton2.setAttribute('id', 'priority-button-selector-2');
+                            priorityButton2.classList.add('priority-button');
+                            priorityButton2.textContent = "Priority 2";
+                            priorityButton2.addEventListener('click', setPriority);
+
+                            const priorityImg2 = document.createElement('img');
+                                priorityImg2.setAttribute('id', 'priority-flag');
+                                priorityImg2.classList.add('priority-2');
+                                priorityImg2.src = flagSVG;
+
+                                priorityButton2.appendChild(priorityImg2);
+
+                        const priorityButton3 = document.createElement('div');
+                            priorityButton3.setAttribute('id', 'priority-button-selector-3');
+                            priorityButton3.classList.add('priority-button');
+                            priorityButton3.textContent = "Priority 3";
+                            priorityButton3.addEventListener('click', setPriority);
+
+                            const priorityImg3 = document.createElement('img');
+                                priorityImg3.setAttribute('id', 'priority-flag');
+                                priorityImg3.classList.add('priority-3');
+                                priorityImg3.src = flagSVG;
+
+                                priorityButton3.appendChild(priorityImg3);
+
+                        const priorityButton4 = document.createElement('div');
+                        priorityButton4.setAttribute('id', 'priority-button-selector-4');
+                        priorityButton4.classList.add('priority-button');
+                        priorityButton4.textContent = "Priority 4";
+                        priorityButton4.addEventListener('click', setPriority);
+
+                            const priorityImg4 = document.createElement('img');
+                                priorityImg4.setAttribute('id', 'priority-flag');
+                                priorityImg4.classList.add('priority-4');
+                                priorityImg4.src = flagSVG;
+
+                                priorityButton4.appendChild(priorityImg4);
 
                     const submitButton = document.createElement('input');
                         submitButton.classList.add('submit-button');
@@ -85,6 +145,11 @@ function addItem() {
                         cancelButton.classList.add('cancel-button');
                         cancelButton.textContent = "Cancel";
 
+                priorityButtonContainer.appendChild(labelForPriority);
+                priorityButtonContainer.appendChild(priorityButton1);
+                priorityButtonContainer.appendChild(priorityButton2);
+                priorityButtonContainer.appendChild(priorityButton3);
+                priorityButtonContainer.appendChild(priorityButton4);
 
                 itemFieldset.appendChild(labelForTitle);
                 itemFieldset.appendChild(inputForTitle);
@@ -92,7 +157,7 @@ function addItem() {
                 itemFieldset.appendChild(inputForDescription);
                 itemFieldset.appendChild(labelForCalendar);
                 itemFieldset.appendChild(inputForCalendar);
-                itemFieldset.appendChild(priorityButton);
+                itemFieldset.appendChild(priorityButtonContainer);
                 itemFieldset.appendChild(submitButton);
                 itemFieldset.appendChild(cancelButton);
             formContainer.appendChild(itemFieldset);

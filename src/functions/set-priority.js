@@ -2,6 +2,7 @@ export {
     setPriority,
 }
 
-function setPriority() {
-
+function setPriority(e) {
+    // Priority Handling
+    console.log(e.target.id);
 }

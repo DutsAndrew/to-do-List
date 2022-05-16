@@ -1,8 +1,9 @@
 .add-item-nav {
     display: flex;
     flex-flow: column wrap;
-    width: 60vw;
+    width: 65vw;
     height: 80vh;
+    overflow: scroll;
     background-color: #181818;
     color: #f2f2f2;
     position: absolute; left: 20vw; top: 18vh;
@@ -18,7 +19,7 @@
 fieldset {
     display: flex;
     flex-flow: column wrap;
-    width: 60vw;
+    width: 59vw;
     height: 79vh;
 }
 
@@ -28,7 +29,19 @@ fieldset {
     width: 15vw;
     height: 4vh;
     font-size: 2em;
-    padding: 3px;
+    padding-bottom: 2%;
+}
+
+.input-title {
+    display: flex;
+    flex-flow: column wrap;
+    width: 59vw;
+    height: 4vh;
+    resize: vertical;
+    font-size: 2em;
+    background-color: #f2f2f2;
+    color: #282828;
+    opacity: 75%;
 }
 
 .label-description {
@@ -37,27 +50,16 @@ fieldset {
     width: 5vw;
     height: 4vh;
     font-size: 2em;
-    padding: 3px;
-}
-
-.input-title {
-    display: flex;
-    flex-flow: column wrap;
-    width: 60vw;
-    height: 5vh;
-    resize: vertical;
-    font-size: 2em;
-    background-color: #f2f2f2;
-    color: #282828;
-    opacity: 75%;
+    padding-bottom: 2%;
 }
 
 .input-description {
     display: flex;
     flex-flow: column wrap;
-    width: 60vw;
-    height: 25vh;
+    width: 59vw;
+    height: 15vh;
     resize: vertical;
+    overflow-y: scroll;
     font-size: 1.5em;
     background-color: #f2f2f2;
     color: #282828;
@@ -70,17 +72,34 @@ fieldset {
     width: 15vw;
     height: 4vh;
     font-size: 2em;
-    padding: 3px;
+    padding-bottom: 2%;
 }
 
 .input-calendar {
     display: flex;
     flex-flow: column wrap;
     width: 10vw;
-    height: 5vh;
+    height: 7vh;
     background-color: #f2f2f2;
     color: #282828;
+    font-size: 1.25em;
     opacity: 75%;
+}
+
+.label-priority {
+    display: flex;
+    flex-flow: column wrap;
+    width: 15vw;
+    height: 4vh;
+    font-size: 2em;
+    padding-bottom: 2%;
+}
+
+.priority-button-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 40vw;
+    height: 7vh;
 }
 
 .priority-button {
@@ -88,12 +107,48 @@ fieldset {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    width: 10vw;
-    height: 5vh;
+    width: 10.25vw;
+    height: 7vh;
     background-color: #f2f2f2;
     color: #282828;
+    font-size: 1em;
     opacity: 75%;
-    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.priority-0 {
+    display: flex;
+    width: 0.5fr;
+    height: 0.5fr;
+    filter: invert(0%) sepia(7%) saturate(1487%) hue-rotate(341deg) brightness(97%) contrast(92%);
+}
+
+.priority-1 {
+    display: flex;
+    width: 0.5fr;
+    height: 0.5fr;
+    filter: invert(22%) sepia(63%) saturate(3049%) hue-rotate(344deg) brightness(80%) contrast(98%);
+}
+
+.priority-2 {
+    display: flex;
+    width: 0.5fr;
+    height: 0.5fr;
+    filter: invert(66%) sepia(69%) saturate(6864%) hue-rotate(357deg) brightness(90%) contrast(88%);
+}
+
+.priority-3 {
+    display: flex;
+    width: 0.5fr;
+    height: 0.5fr;
+    filter: invert(81%) sepia(74%) saturate(581%) hue-rotate(4deg) brightness(98%) contrast(83%); 
+}
+
+.priority-4 {
+    display: flex;
+    width: 0.5fr;
+    height: 0.5fr;
+    filter: invert(84%) sepia(21%) saturate(4440%) hue-rotate(27deg) brightness(103%) contrast(83%);
 }
 
 .submit-button {
@@ -108,7 +163,8 @@ fieldset {
     opacity: 75%;
     font-size: 2em;
     margin: auto;
-    margin-top: 6%;
+    margin-top: 12%;
+    margin-bottom: 1%;
     background-color: #41fc03;
 }
 
