@@ -26,10 +26,10 @@ fieldset {
 .label-title {
     display: flex;
     flex-flow: column wrap;
-    width: 15vw;
+    width: 59vw;
     height: 4vh;
     font-size: 2em;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
 }
 
 .input-title {
@@ -47,10 +47,10 @@ fieldset {
 .label-description {
     display: flex;
     flex-flow: column wrap;
-    width: 5vw;
+    width: 59vw;
     height: 4vh;
     font-size: 2em;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
 }
 
 .input-description {
@@ -72,7 +72,7 @@ fieldset {
     width: 15vw;
     height: 4vh;
     font-size: 2em;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
 }
 
 .input-calendar {
@@ -92,7 +92,7 @@ fieldset {
     width: 15vw;
     height: 4vh;
     font-size: 2em;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
 }
 
 .priority-button-container {
@@ -113,42 +113,33 @@ fieldset {
     color: #282828;
     font-size: 1em;
     opacity: 75%;
-    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
-.priority-0 {
+.priority-0, .priority-1, .priority-2, .priority-3, .priority-4 {
     display: flex;
     width: 0.5fr;
     height: 0.5fr;
+}
+
+.priority-0 {
     filter: invert(0%) sepia(7%) saturate(1487%) hue-rotate(341deg) brightness(97%) contrast(92%);
 }
 
 .priority-1 {
-    display: flex;
-    width: 0.5fr;
-    height: 0.5fr;
-    filter: invert(22%) sepia(63%) saturate(3049%) hue-rotate(344deg) brightness(80%) contrast(98%);
+    filter: invert(32%) sepia(90%) saturate(6963%) hue-rotate(1deg) brightness(97%) contrast(133%);
 }
 
 .priority-2 {
-    display: flex;
-    width: 0.5fr;
-    height: 0.5fr;
-    filter: invert(66%) sepia(69%) saturate(6864%) hue-rotate(357deg) brightness(90%) contrast(88%);
+    filter: invert(44%) sepia(96%) saturate(864%) hue-rotate(0deg) brightness(99%) contrast(98%);
 }
 
 .priority-3 {
-    display: flex;
-    width: 0.5fr;
-    height: 0.5fr;
-    filter: invert(81%) sepia(74%) saturate(581%) hue-rotate(4deg) brightness(98%) contrast(83%); 
+    filter: invert(88%) sepia(57%) saturate(627%) hue-rotate(353deg) brightness(91%) contrast(104%); 
 }
 
 .priority-4 {
-    display: flex;
-    width: 0.5fr;
-    height: 0.5fr;
-    filter: invert(84%) sepia(21%) saturate(4440%) hue-rotate(27deg) brightness(103%) contrast(83%);
+    filter: invert(90%) sepia(22%) saturate(1790%) hue-rotate(31deg) brightness(94%) contrast(105%);
 }
 
 .submit-button {
@@ -156,12 +147,12 @@ fieldset {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    width: 15vw;
+    width: 18vw;
     height: 5vh;
     background-color: #f2f2f2;
     color: #282828;
     opacity: 75%;
-    font-size: 2em;
+    font-size: 1.5em;
     margin: auto;
     margin-top: 12%;
     margin-bottom: 1%;
@@ -173,13 +164,35 @@ fieldset {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    width: 15vw;
+    width: 18vw;
     height: 5vh;
     background-color: #f2f2f2;
     color: #282828;
     opacity: 75%;
-    font-size: 2em;
+    font-size: 1.5em;
     margin: auto;
     margin-top: 0.25%;
     background-color: #de1d1d;
+}
+
+/* SELECTED PRIORITY STYLING SELECTED PRIORITY STYLING SELECTED PRIORITY STYLING SELECTED PRIORITY STYLING SELECTED PRIORITY STYLING */
+
+.selected-priority-1 {
+    border: 2px solid red;
+    box-shadow: red 2px 2px;
+}
+
+.selected-priority-2 {
+    border: 2px solid orange;
+    box-shadow: orange 2px 2px;
+}
+
+.selected-priority-3 {
+    border: 2px solid yellow;
+    box-shadow: yellow 2px 2px;
+}
+
+.selected-priority-4 {
+    border: 2px solid green;
+    box-shadow: green 2px 2px;
 }
