@@ -2,9 +2,6 @@
 import { compareAsc, format } from 'date-fns';
 
 // All functions for the To-do list to work
-import { changePriority } from './functions/change-priority';
-import { createProject } from './functions/create-project';
-import { createTask } from './functions/create-task';
 import { deleteItem } from './functions/delete-item';
 import { storeLocally } from './functions/local-storage';
 import { markComplete } from './functions/mark-complete';
@@ -39,3 +36,4 @@ displayLoad();
 
     const addItemButton = document.querySelector('.add-item-button');
         addItemButton.addEventListener('click', addItemController);
+

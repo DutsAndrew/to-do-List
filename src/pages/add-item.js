@@ -3,14 +3,18 @@ export {
 }
 
 import { setPriority } from '../functions/set-priority';
-import { displayPriority } from '../functions/set-priority';
 import flagSVG from '../svgs/flag.svg';
 
+// variables needed for functions to run
 let addItemFormOpen = false;
+let today = new Date().toISOString().slice(0, 10);
+let priority = null;
+let myProjects = [];
 
+// Add-Item Pop Nav Controller
 function addItemController() {
     if (addItemFormOpen === false) {
-        addItem();
+        addItemNav();
         addItemFormOpen = true;
     } else if ( addItemFormOpen === true ) {
         closeAddItemNav();
@@ -18,9 +22,13 @@ function addItemController() {
     }
 }
 
-let today = new Date().toISOString().slice(0, 10);
+function closeAddItemNav() {
+    const content = document.querySelector('#content');
+    const addItemNav = document.querySelector('.add-item-nav');
+        content.removeChild(addItemNav);
+}
 
-function addItem() {
+function addItemNav() {
     console.log('Adding item... Opening nav to add item... Please wait...');
 
     const content = document.querySelector('#content');
@@ -90,6 +98,7 @@ function addItem() {
                             priorityButton1.textContent = "Priority 1";
                             priorityButton1.onclick = function() {
                                 setPriority(1);
+                                priority = 1;
                             }
 
                             const priorityImg1 = document.createElement('img');
@@ -105,6 +114,7 @@ function addItem() {
                             priorityButton2.textContent = "Priority 2";
                             priorityButton2.onclick = function() {
                                 setPriority(2);
+                                priority = 2;
                             }
 
                             const priorityImg2 = document.createElement('img');
@@ -120,6 +130,7 @@ function addItem() {
                             priorityButton3.textContent = "Priority 3";
                             priorityButton3.onclick = function() {
                                 setPriority(3);
+                                priority = 3;
                             }
 
                             const priorityImg3 = document.createElement('img');
@@ -135,6 +146,7 @@ function addItem() {
                             priorityButton4.textContent = "Priority 4";
                             priorityButton4.onclick = function() {
                                 setPriority(4);
+                                priority = 4;
                             }
 
                             const priorityImg4 = document.createElement('img');
@@ -149,6 +161,9 @@ function addItem() {
                         submitButton.type = "button";
                         submitButton.name = "submit";
                         submitButton.value = "Add Project";
+                        submitButton.onclick = function() {
+                            createItem(priority);
+                        }
 
                     const cancelButton = document.createElement('button');
                         cancelButton.classList.add('cancel-button');
@@ -174,8 +189,63 @@ function addItem() {
     content.appendChild(addItemNav);
 }
 
-function closeAddItemNav() {
-    const content = document.querySelector('#content');
-    const addItemNav = document.querySelector('.add-item-nav');
-        content.removeChild(addItemNav);
+function createItem(priority) {
+    console.log('Item is being added to the page!');
+
+    const projectTitle = document.querySelector('#title').value;
+    const projectDescription = document.querySelector('#description').value;
+    const projectCalendar = document.querySelector('#due').value;
+
+    console.log(projectTitle);
+    console.log(projectDescription);
+    console.log(projectCalendar);
+    console.log(priority);
+    console.log(today);
+
+    let newProject = new Project(projectTitle, projectDescription, projectCalendar, priority);
+    myProjects.push(newProject);
+    console.log(myProjects);
+
+    createProjectCard(projectTitle, projectDescription, projectCalendar);
+}
+
+function Project(title, description, due, priority) {
+    this.title = title;
+    this.description = description;
+    this.due = due;
+    this.priority = priority;
+    this.getInfo = function() {
+        return(`${title}, ${description}, ${due}, ${priority}`);
+    };
+}
+
+function createProjectCard(projectTitle, projectDescription, projectCalendar) {
+    const projectHolder = document.querySelector('#project-holder');
+    const display = document.querySelector('#display');
+
+    const projectDiv = document.createElement('div');
+        projectDiv.classList.add('project-divs');
+        
+        const projectTitleDisplay = document.createElement('p');
+            projectTitleDisplay.classList.add('project-display-title-text');
+            projectTitleDisplay.textContent = projectTitle;
+
+        const projectDescriptionDisplay = document.createElement('p');
+            projectDescriptionDisplay.classList.add('project-display-description-text');
+            projectDescriptionDisplay.textContent = projectDescription;
+
+        const projectDueDisplay = document.createElement('p');
+            projectDueDisplay.classList.add('project-display-due-text')
+            projectDueDisplay.textContent = projectCalendar;
+
+        const projectPriorityDisplay = document.createElement('div');
+        const projectPriorityDisplayImg = document.createElement('img');
+
+        projectDiv.appendChild();
+        projectDiv.appendChild();
+        projectDiv.appendChild();
+}
+
+function calculateDaysLeft() {
+    
 }
