@@ -41,7 +41,7 @@ fieldset {
     font-size: 2em;
     background-color: #f2f2f2;
     color: #282828;
-    opacity: 75%;
+    opacity: 90%;
 }
 
 .label-description {
@@ -63,7 +63,7 @@ fieldset {
     font-size: 1.5em;
     background-color: #f2f2f2;
     color: #282828;
-    opacity: 75%;
+    opacity: 90%;
 }
 
 .label-calendar {
@@ -82,8 +82,8 @@ fieldset {
     height: 7vh;
     background-color: #f2f2f2;
     color: #282828;
-    font-size: 1.25em;
-    opacity: 75%;
+    font-size: 1.5em;
+    opacity: 90%;
 }
 
 .label-priority {
@@ -112,7 +112,7 @@ fieldset {
     background-color: #f2f2f2;
     color: #282828;
     font-size: 1em;
-    opacity: 75%;
+    opacity: 90%;
     margin-top: 1%;
 }
 
@@ -151,7 +151,7 @@ fieldset {
     height: 5vh;
     background-color: #f2f2f2;
     color: #282828;
-    opacity: 75%;
+    opacity: 90%;
     font-size: 1.5em;
     margin: auto;
     margin-top: 12%;
@@ -168,7 +168,7 @@ fieldset {
     height: 5vh;
     background-color: #f2f2f2;
     color: #282828;
-    opacity: 75%;
+    opacity: 90%;
     font-size: 1.5em;
     margin: auto;
     margin-top: 0.25%;

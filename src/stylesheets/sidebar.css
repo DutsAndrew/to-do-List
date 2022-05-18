@@ -21,6 +21,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    border: 0.5em solid #282828;
 }
 
 .due-today-svg {
@@ -49,6 +50,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    border: 0.5em solid #282828;
 }
 
 .due-this-week-svg {
@@ -77,6 +79,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    border: 0.5em solid #282828;
 }
 
 .due-this-month-svg {
@@ -108,6 +111,7 @@
 #project-title {
     align-items: center;
     justify-content: flex-start;
+    border: 0.5em solid #282828;
 }
 
 .project-title-text {
@@ -160,6 +164,7 @@
 
 #archived-projects {
     align-items: center;
+    border: 0.5em solid #282828;
 }
 
 .archived-projects-text {

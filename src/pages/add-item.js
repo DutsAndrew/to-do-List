@@ -194,19 +194,19 @@ function createItem(priority) {
 
     const projectTitle = document.querySelector('#title').value;
     const projectDescription = document.querySelector('#description').value;
-    const projectCalendar = document.querySelector('#due').value;
+    const due = document.querySelector('#due').value;
 
     console.log(projectTitle);
     console.log(projectDescription);
-    console.log(projectCalendar);
+    console.log(due);
     console.log(priority);
     console.log(today);
 
-    let newProject = new Project(projectTitle, projectDescription, projectCalendar, priority);
+    let newProject = new Project(projectTitle, projectDescription, due, priority);
     myProjects.push(newProject);
     console.log(myProjects);
 
-    createProjectCard(projectTitle, projectDescription, projectCalendar);
+    createProjectCard(projectTitle, projectDescription, due);
 }
 
 function Project(title, description, due, priority) {
@@ -219,7 +219,7 @@ function Project(title, description, due, priority) {
     };
 }
 
-function createProjectCard(projectTitle, projectDescription, projectCalendar) {
+function createProjectCard(projectTitle, projectDescription, due) {
     const projectHolder = document.querySelector('#project-holder');
     const display = document.querySelector('#display');
 
@@ -236,16 +236,21 @@ function createProjectCard(projectTitle, projectDescription, projectCalendar) {
 
         const projectDueDisplay = document.createElement('p');
             projectDueDisplay.classList.add('project-display-due-text')
-            projectDueDisplay.textContent = projectCalendar;
+            projectDueDisplay.textContent = calculateDaysLeft();
 
         const projectPriorityDisplay = document.createElement('div');
         const projectPriorityDisplayImg = document.createElement('img');
 
-        projectDiv.appendChild();
-        projectDiv.appendChild();
-        projectDiv.appendChild();
+        projectDiv.appendChild(projectTitleDisplay);
+        projectDiv.appendChild(projectDescriptionDisplay);
+        projectDiv.appendChild(projectDueDisplay);
+
+        let dupProject = projectTitleDisplay.cloneNode(true);
+    display.appendChild(projectDiv);
+    projectHolder.appendChild(dupProject);
 }
 
-function calculateDaysLeft() {
-    
+function calculateDaysLeft(today, due) {
+    const differenceInDays = Math.abs(due - today);
+    return differenceInDays / (1000 * 60 * 60 * 24);
 }
