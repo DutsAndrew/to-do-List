@@ -1,3 +1,7 @@
+body {
+    background-color: #181818;
+}
+
 .display-screen {
     display: flex;
     flex-flow: row nowrap;
@@ -12,4 +16,158 @@
     width: 85vw;
     height: 85vh;
     background-color: #181818;
+}
+
+/* CSS For Projects, Tasks, and each item that was created w/ Add-Item */
+
+#project-holder {
+    display: flex;
+    flex-flow: row wrap;
+    overflow-y: scroll;
+}
+
+#display {
+    display: flex;
+    flex-flow: column wrap;
+    overflow-y: scroll;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.25em;
+}
+
+.project-divs {
+    display: flex;
+    flex-flow: column wrap;
+    width: 84vw;
+    height: 10vh;
+    border-left: 0.2em solid #f2f2f2;
+    align-items: center;
+    justify-content: center;
+    opacity: 90%;
+}
+
+.project-display-container {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 84vw;
+    height: 5.9vh;
+    gap: 0.25em;
+}
+
+.checkbox-complete {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2vw;
+    height: 2vh;
+    margin-left: 1em;
+}
+
+.archive-button-closed {
+    display: none;
+    visibility: hidden;
+}
+
+.archive-button-open {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2.5vw;
+    height: 2.5vh;
+    background: center / contain no-repeat url(../svgs/archive.svg);
+    filter: invert(76%) sepia(48%) saturate(3796%) hue-rotate(3deg) brightness(109%) contrast(98%);
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-display-title-text {
+    display: flex;
+    font-size: 1.5em;
+    width: 15vw;
+    height: 6vh;
+    color: #f2f2f2;
+    margin: 0;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 90%;
+}
+
+.project-display-description-text {
+    display: flex;
+    font-size: 1em;
+    width: 50vw;
+    height: 6vh;
+    color: #f2f2f2;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 90%;
+    margin: auto;
+}
+
+.project-display-due-text {
+    display: flex;
+    font-size: 1.25em;
+    width: 8vw;
+    height: 6vh;
+    color: #f2f2f2;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 90%;
+    margin: auto;
+}
+
+.add-task-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 5vw;
+    height: 5vh;
+}
+
+.add-task-svg {
+    display: flex;
+    flex-flow: column wrap;
+    width: 2.5vw;
+    height: 2.5vh;
+    background: center / contain no-repeat url(../svgs/add.svg);
+    filter: invert(25%) sepia(61%) saturate(1454%) hue-rotate(78deg) brightness(92%) contrast(97%);
+    justify-content: center;
+    align-items: center;
+}
+
+.add-task-text {
+    display: flex;
+    flex-flow: column wrap;
+    color: #f2f2f2;
+    font-size: 0.9em;
+    margin: 0;
+    opacity: 90%;
+}
+
+.edit-project {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2.5vw;
+    height: 2.5vh;
+    background: center / contain no-repeat url(../svgs/edit-it.svg);
+    filter: invert(56%) sepia(72%) saturate(259%) hue-rotate(150deg) brightness(87%) contrast(85%);
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-project {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2.5vw;
+    height: 2.5vh;
+    background: center / contain no-repeat url(../svgs/delete.svg);
+    filter: invert(22%) sepia(42%) saturate(5109%) hue-rotate(348deg) brightness(104%) contrast(92%);
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 }

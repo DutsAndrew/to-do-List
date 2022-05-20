@@ -5,7 +5,7 @@
     background-color: #2B2B2B;
     width: 15vw;
     height: 85vh;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .side-bar-top-items {
@@ -42,7 +42,7 @@
     padding-left: 15px;
     height: 8vh;
     width: 14vw;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #due-this-week {
@@ -71,7 +71,7 @@
     padding-left: 15px;
     height: 8vh;
     width: 14vw;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #due-this-month {
@@ -100,7 +100,7 @@
     padding-left: 15px;
     height: 8vh;
     width: 14vw;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .due-text {
@@ -149,7 +149,7 @@
     padding-left: 15px;
     height: 15vh;
     width: 14vw;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .project-holder-closed {
@@ -159,7 +159,7 @@
     padding-left: 15px;
     height: 0vh;
     width: 14vw;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #archived-projects {
@@ -179,7 +179,7 @@
     padding-left: 15px;
     height: 8vh;
     width: 14vw;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .archived-holder-closed {
@@ -189,7 +189,7 @@
     padding-left: 15px;
     height: 0vh;
     width: 14vw;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .archived-drop-down-right-svg {

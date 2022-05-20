@@ -14,6 +14,8 @@ import { displayLoad } from './pages/display';
 import { viewAllProjects } from './functions/view-all-projects';
 import { viewAllToDos } from './functions/view-all-to-dos';
 import { viewItem } from './functions/view-item';
+import { buildProjectCards } from './pages/add-item';
+import { createTemplateProjects } from './pages/add-item';
 
 // All CSS style sheets for design
 import './stylesheets/header.css';
@@ -26,6 +28,8 @@ import './stylesheets/add-item.css';
 headerLoad();
 loadSideBar();
 displayLoad();
+createTemplateProjects();
+buildProjectCards();
 
 // Event Listeners for button clicks on header
     const menuButton = document.querySelector('.menu-button');
