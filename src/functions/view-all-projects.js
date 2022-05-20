@@ -1,7 +1,0 @@
-export {
-    viewAllProjects,
-}
-
-function viewAllProjects() {
-
-}

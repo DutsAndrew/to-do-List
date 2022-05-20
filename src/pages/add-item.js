@@ -6,6 +6,7 @@ export {
 
 import { add } from 'date-fns';
 import { setPriority } from '../functions/set-priority';
+import { archiveIt } from '../functions/archive-it';
 import flagSVG from '../svgs/flag.svg';
 
 // variables needed for functions to run
@@ -167,6 +168,7 @@ function addItemNav() {
                         submitButton.value = "Add Project";
                         submitButton.onclick = function() {
                             storeFormValues();
+                            closeAddItemNav();
                         }
 
                     const cancelButton = document.createElement('button');
@@ -246,7 +248,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
         projectDiv.classList.add('project-divs');
         
         const projectDisplayContainer = document.createElement('div');
-            projectDisplayContainer.setAttribute('id', 'project-display');
+            projectDisplayContainer.setAttribute('id', projectTitle);
             projectDisplayContainer.classList.add('project-display-container');
 
             const checkBox = document.createElement('input');
@@ -267,10 +269,17 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             const archiveItButton = document.createElement('div');
                 archiveItButton.setAttribute('id', 'archive-it-button');
                 archiveItButton.classList.add('archive-button-closed');
+                archiveItButton.addEventListener('click', archiveIt);
 
             const projectTitleDisplay = document.createElement('p');
-                projectTitleDisplay.classList.add('project-display-title-text');
                 projectTitleDisplay.textContent = projectTitle;
+
+                    // Duplicate created before adding class, so that dup, doesn't have the same class
+                    let dupProject = projectTitleDisplay.cloneNode(true);
+                        dupProject.setAttribute('id', projectTitle);
+                        dupProject.classList.add('dup-project-title');
+
+                projectTitleDisplay.classList.add('project-display-title-text');
 
             const projectDescriptionDisplay = document.createElement('p');
                 projectDescriptionDisplay.classList.add('project-display-description-text');
@@ -279,6 +288,19 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             const projectDueDisplay = document.createElement('p');
                 projectDueDisplay.classList.add('project-display-due-text')
                 projectDueDisplay.textContent = projectDue;
+
+            const viewProjectContainer = document.createElement('div');
+                    viewProjectContainer.classList.add('view-project-container');
+
+                const viewProjectSvg = document.createElement('div');
+                    viewProjectSvg.classList.add('view-project-svg');
+                
+                const viewProjectText = document.createElement('p');
+                    viewProjectText.classList.add('view-project-text');
+                    viewProjectText.textContent = "View Project";
+
+                viewProjectContainer.appendChild(viewProjectSvg);
+                viewProjectContainer.appendChild(viewProjectText);
 
             const addTaskContainer = document.createElement('div');
                 addTaskContainer.classList.add('add-task-container');
@@ -308,6 +330,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             projectDisplayContainer.appendChild(projectTitleDisplay);
             projectDisplayContainer.appendChild(projectDescriptionDisplay);
             projectDisplayContainer.appendChild(projectDueDisplay);
+            projectDisplayContainer.appendChild(viewProjectContainer);
             projectDisplayContainer.appendChild(addTaskContainer);
             projectDisplayContainer.appendChild(editProjectButton);
             projectDisplayContainer.appendChild(deleteProjectButton);        
@@ -317,9 +340,8 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
         projectDiv.appendChild(projectDisplayContainer);
 
-        let dupProject = projectTitleDisplay.cloneNode(true);
-
     display.appendChild(projectDiv);
+    projectHolder.appendChild
     projectHolder.appendChild(dupProject);
 }
 

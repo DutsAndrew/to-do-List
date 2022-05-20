@@ -142,39 +142,39 @@ function sideBarController() {
 }
 
 function projectDropDownController() {
-    const dropDownSvg = document.querySelector('#project-drop-down-svg');
+    const projectDropDownSvg = document.querySelector('#project-drop-down-svg');
     const projectHolder = document.querySelector('#project-holder');
 
     if (projectDropDownOpen === false) {
         projectHolder.classList.remove('project-holder-closed');
         projectHolder.classList.add('project-holder-open');
-        dropDownSvg.classList.remove('project-drop-down-right-svg');
-        dropDownSvg.classList.add('project-drop-down-open-svg');
+        projectDropDownSvg.classList.remove('project-drop-down-right-svg');
+        projectDropDownSvg.classList.add('project-drop-down-open-svg');
         projectDropDownOpen = true;
     } else if (projectDropDownOpen === true) {
         projectHolder.classList.remove('project-holder-open');
         projectHolder.classList.add('project-holder-closed');
-        dropDownSvg.classList.remove('project-drop-down-open-svg');
-        dropDownSvg.classList.add('project-drop-down-right-svg');
+        projectDropDownSvg.classList.remove('project-drop-down-open-svg');
+        projectDropDownSvg.classList.add('project-drop-down-right-svg');
         projectDropDownOpen = false;
     }
 }
 
 function archivedDropDownController() {
-    const dropDownSvg = document.querySelector('#archived-drop-down-svg');
+    const archivedDropDownSvg = document.querySelector('#archived-drop-down-svg');
     const archivedHolder = document.querySelector('#archived-holder');
 
     if (archivedDropDownOpen === false) {
         archivedHolder.classList.remove('archived-holder-closed');
         archivedHolder.classList.add('archived-holder-open');
-        dropDownSvg.classList.remove('archived-drop-down-right-svg');
-        dropDownSvg.classList.add('archived-drop-down-open-svg');
+        archivedDropDownSvg.classList.remove('archived-drop-down-right-svg');
+        archivedDropDownSvg.classList.add('archived-drop-down-open-svg');
         archivedDropDownOpen = true;
     } else if (archivedDropDownOpen === true) {
         archivedHolder.classList.remove('archived-holder-open');
         archivedHolder.classList.add('archived-holder-closed');
-        dropDownSvg.classList.remove('archived-drop-down-open-svg');
-        dropDownSvg.classList.add('archived-drop-down-right-svg');
+        archivedDropDownSvg.classList.remove('archived-drop-down-open-svg');
+        archivedDropDownSvg.classList.add('archived-drop-down-right-svg');
         archivedDropDownOpen = false;
     }
 }

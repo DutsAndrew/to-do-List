@@ -112,9 +112,37 @@ body {
     height: 6vh;
     color: #f2f2f2;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     opacity: 90%;
     margin: auto;
+}
+
+.view-project-container {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-project-svg {
+    display: flex;
+    flex-flow: column wrap;
+    width: 2.5vw;
+    height: 2.5vh;
+    background: center / contain no-repeat url(../svgs/add-task.svg);
+    filter: invert(76%) sepia(48%) saturate(3796%) hue-rotate(3deg) brightness(109%) contrast(98%);
+    justify-content: center;
+    align-items: center;
+}
+
+.view-project-text {
+    display: flex;
+    flex-flow: column wrap;
+    color: #f2f2f2;
+    font-size: 0.7em;
+    margin: 0;
+    opacity: 90%;
 }
 
 .add-task-container {
@@ -123,7 +151,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 5vw;
-    height: 5vh;
+    height: 6vh;
+    opacity: 90%;
 }
 
 .add-task-svg {
@@ -132,7 +161,7 @@ body {
     width: 2.5vw;
     height: 2.5vh;
     background: center / contain no-repeat url(../svgs/add.svg);
-    filter: invert(25%) sepia(61%) saturate(1454%) hue-rotate(78deg) brightness(92%) contrast(97%);
+    filter: invert(59%) sepia(15%) saturate(2772%) hue-rotate(63deg) brightness(100%) contrast(81%);
     justify-content: center;
     align-items: center;
 }
@@ -141,7 +170,7 @@ body {
     display: flex;
     flex-flow: column wrap;
     color: #f2f2f2;
-    font-size: 0.9em;
+    font-size: 0.7em;
     margin: 0;
     opacity: 90%;
 }

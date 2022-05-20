@@ -11,9 +11,8 @@
 .side-bar-top-items {
     display: flex;
     flex-flow: row nowrap;
-    height: 50px;
-    width: 14vw;
-    padding-left: 15px;
+    height: 4vh;
+    width: 15vw;
 }
 
 #due-today {
@@ -145,7 +144,7 @@
 .project-holder-open {
     color: #f2f2f2;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     padding-left: 15px;
     height: 15vh;
     width: 14vw;
@@ -162,6 +161,13 @@
     overflow-y: scroll;
 }
 
+.dup-project-title {
+    display: flex;
+    font-size: 1.25em;
+    width: 15vw;
+    margin: 4%;
+}
+
 #archived-projects {
     align-items: center;
     border: 0.5em solid #282828;
@@ -175,9 +181,9 @@
 .archived-holder-open {
     color: #f2f2f2;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     padding-left: 15px;
-    height: 8vh;
+    height: 15vh;
     width: 14vw;
     overflow-y: scroll;
 }
