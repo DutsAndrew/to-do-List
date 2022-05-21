@@ -2,18 +2,15 @@
 import { compareAsc, format } from 'date-fns';
 
 // All functions for the To-do list to work
-import { deleteItem } from './functions/delete-item';
 import { storeLocally } from './functions/local-storage';
-import { markComplete } from './functions/mark-complete';
 import { headerLoad } from './pages/header';
 import { loadSideBar } from './pages/side-bar';
 import { sideBarController } from './pages/side-bar';
 import { loadHome } from './functions/load-home';
-import { addItemController } from './pages/add-item';
+import { addProjectController } from './functions/add-project';
 import { displayLoad } from './pages/display';
-import { viewItem } from './functions/view-item';
-import { buildProjectCards } from './pages/add-item';
-import { createTemplateProjects } from './pages/add-item';
+import { buildProjectCards } from './functions/add-project';
+import { createTemplateProjects } from './functions/add-project';
 
 // All CSS style sheets for design
 import './stylesheets/header.css';
@@ -37,5 +34,5 @@ buildProjectCards();
         homeButton.addEventListener('click', loadHome);
 
     const addItemButton = document.querySelector('.add-item-button');
-        addItemButton.addEventListener('click', addItemController);
+        addItemButton.addEventListener('click', addProjectController);
 

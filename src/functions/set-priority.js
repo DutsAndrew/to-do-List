@@ -1,5 +1,6 @@
 export {
     setPriority,
+    assignPriorityColors,
 }
 
 let displaySelected;
@@ -46,5 +47,27 @@ function removePreviousSelected() {
         priority3.classList.remove('selected-priority-3');
     } else if (displaySelected == 4) {
         priority4.classList.remove('selected-priority-4');
+    }
+}
+
+function assignPriorityColors(projectTitle, projectPriority) {
+    const projectDiv = document.getElementById(`${projectTitle}${projectPriority}`);
+    const dupProject = document.getElementById(`${projectTitle}`);
+    console.log(projectDiv);
+
+    if (projectPriority === 1) {
+        projectDiv.classList.add('project-div-priority-1');
+        dupProject.classList.add('project-div-priority-1');
+    } else if (projectPriority === 2) {
+        projectDiv.classList.add('project-div-priority-2');
+        dupProject.classList.add('project-div-priority-2');
+    } else if (projectPriority === 3) {
+        projectDiv.classList.add('project-div-priority-3');
+        dupProject.classList.add('project-div-priority-3');
+    } else if (projectPriority === 4) {
+        projectDiv.classList.add('project-div-priority-4');
+        dupProject.classList.add('project-div-priority-4');
+    } else {
+        return
     }
 }

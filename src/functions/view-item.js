@@ -1,7 +1,0 @@
-export {
-    viewItem,
-}
-
-function viewItem() {
-
-}

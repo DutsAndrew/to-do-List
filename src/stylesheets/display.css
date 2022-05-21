@@ -46,6 +46,22 @@ body {
     opacity: 90%;
 }
 
+.project-div-priority-1 {
+    border-left: 0.2em solid red;
+}
+
+.project-div-priority-2 {
+    border-left: 0.2em solid orange;
+}
+
+.project-div-priority-3 {
+    border-left: 0.2em solid yellow;
+}
+
+.project-div-priority-4 {
+    border-left: 0.2em solid green;
+}
+
 .project-display-container {
     display: flex;
     flex-flow: row nowrap;

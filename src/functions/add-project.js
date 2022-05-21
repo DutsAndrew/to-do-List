@@ -1,45 +1,50 @@
 export {
-    addItemController,
+    addProjectController,
     buildProjectCards,
     createTemplateProjects,
 }
 
-import { add } from 'date-fns';
-import { setPriority } from '../functions/set-priority';
-import { archiveIt } from '../functions/archive-it';
+// import { add } from 'date-fns';
+import { setPriority } from './set-priority';
+import { archiveIt } from './archive-it';
+import { deleteItem } from './delete-item';
+import { viewProject } from './view-project';
+import { editProject } from './edit-project';
+import { addTask } from './add-task';
+import { assignPriorityColors } from './set-priority';
 import flagSVG from '../svgs/flag.svg';
 
 // variables needed for functions to run
-let addItemFormOpen = false;
+let addProjectFormOpen = false;
 let today = new Date().toISOString().slice(0, 10);
 let priority = null;
 let myProjects = [];
 
 // Add-Item Pop Nav Controller
-function addItemController() {
-    if (addItemFormOpen === false) {
-        addItemNav();
-        addItemFormOpen = true;
-    } else if ( addItemFormOpen === true ) {
-        closeAddItemNav();
-        addItemFormOpen = false;
+function addProjectController() {
+    if (addProjectFormOpen === false) {
+        addProjectNav();
+        addProjectFormOpen = true;
+    } else if ( addProjectFormOpen === true ) {
+        closeAddProjectNav();
+        addProjectFormOpen = false;
     }
 }
 
-function closeAddItemNav() {
+function closeAddProjectNav() {
     const content = document.querySelector('#content');
-    const addItemNav = document.querySelector('.add-item-nav');
-        content.removeChild(addItemNav);
-    addItemFormOpen = false;
+    const addProjectNav = document.querySelector('.add-item-nav');
+        content.removeChild(addProjectNav);
+    addProjectFormOpen = false;
 }
 
-function addItemNav() {
+function addProjectNav() {
     console.log('Adding item... Opening nav to add item... Please wait...');
 
     const content = document.querySelector('#content');
 
-        const addItemNav = document.createElement('div');
-            addItemNav.classList.add('add-item-nav');
+        const addProjectNav = document.createElement('div');
+            addProjectNav.classList.add('add-item-nav');
 
             const formContainer = document.createElement('form');
                 formContainer.classList.add('add-item-form-container');
@@ -168,14 +173,14 @@ function addItemNav() {
                         submitButton.value = "Add Project";
                         submitButton.onclick = function() {
                             storeFormValues();
-                            closeAddItemNav();
+                            closeAddProjectNav();
                         }
 
                     const cancelButton = document.createElement('button');
                         cancelButton.classList.add('cancel-button');
                         cancelButton.textContent = "Cancel";
                         cancelButton.onclick = function() {
-                            closeAddItemNav();
+                            closeAddProjectNav();
                         }
 
                 priorityButtonContainer.appendChild(labelForPriority);
@@ -194,8 +199,8 @@ function addItemNav() {
                 itemFieldset.appendChild(submitButton);
                 itemFieldset.appendChild(cancelButton);
             formContainer.appendChild(itemFieldset);
-        addItemNav.appendChild(formContainer);
-    content.appendChild(addItemNav);
+        addProjectNav.appendChild(formContainer);
+    content.appendChild(addProjectNav);
 }
 
 function storeFormValues() {
@@ -234,6 +239,7 @@ function buildProjectCards() {
         if (item.build == "no") {
             item.build = "yes";
             createProjectCard(projectTitle, projectDescription, projectDue, projectPriority);
+            assignPriorityColors(projectTitle, projectPriority);
         } else if (item.build == "yes") {
             return
         }
@@ -246,6 +252,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
     const projectDiv = document.createElement('div');
         projectDiv.classList.add('project-divs');
+        projectDiv.setAttribute('id', `${projectTitle}${projectPriority}`);
         
         const projectDisplayContainer = document.createElement('div');
             projectDisplayContainer.setAttribute('id', projectTitle);
@@ -291,6 +298,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
             const viewProjectContainer = document.createElement('div');
                     viewProjectContainer.classList.add('view-project-container');
+                    viewProjectContainer.addEventListener('click', viewProject);
 
                 const viewProjectSvg = document.createElement('div');
                     viewProjectSvg.classList.add('view-project-svg');
@@ -304,6 +312,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
             const addTaskContainer = document.createElement('div');
                 addTaskContainer.classList.add('add-task-container');
+                addTaskContainer.addEventListener('click', addTask);
 
                 const addTaskSvg = document.createElement('div');
                     addTaskSvg.setAttribute('id', 'add-task-svg');
@@ -320,10 +329,12 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             const editProjectButton = document.createElement('div');
                 editProjectButton.setAttribute('id', 'edit-project-button');
                 editProjectButton.classList.add('edit-project');
+                editProjectButton.addEventListener('click', editProject);
 
             const deleteProjectButton = document.createElement('div');
                 deleteProjectButton.setAttribute('id', 'delete-project-button');
                 deleteProjectButton.classList.add('delete-project');
+                deleteProjectButton.addEventListener('click', deleteItem);
 
             projectDisplayContainer.appendChild(checkBox);
             projectDisplayContainer.appendChild(archiveItButton);
@@ -341,7 +352,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
         projectDiv.appendChild(projectDisplayContainer);
 
     display.appendChild(projectDiv);
-    projectHolder.appendChild
+  
     projectHolder.appendChild(dupProject);
 }
 
