@@ -298,6 +298,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
             const viewProjectContainer = document.createElement('div');
                     viewProjectContainer.classList.add('view-project-container');
+                    viewProjectContainer.setAttribute('id', `View ${projectTitle}`)
                     viewProjectContainer.addEventListener('click', viewProject);
 
                 const viewProjectSvg = document.createElement('div');
@@ -312,6 +313,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
             const addTaskContainer = document.createElement('div');
                 addTaskContainer.classList.add('add-task-container');
+                addTaskContainer.setAttribute('id', `add-task ${projectTitle}`);
                 addTaskContainer.addEventListener('click', addTask);
 
                 const addTaskSvg = document.createElement('div');

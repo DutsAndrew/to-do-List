@@ -46,6 +46,10 @@ body {
     opacity: 90%;
 }
 
+.project-divs-hidden {
+    display: none;
+}
+
 .project-div-priority-1 {
     border-left: 0.2em solid red;
 }

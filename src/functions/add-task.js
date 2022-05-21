@@ -2,6 +2,6 @@ export {
     addTask,
 }
 
-function addTask() {
-    console.log("Add Task button was clicked");
+function addTask(e) {
+    console.log(e.path[3]);
 }

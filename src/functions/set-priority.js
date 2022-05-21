@@ -53,7 +53,6 @@ function removePreviousSelected() {
 function assignPriorityColors(projectTitle, projectPriority) {
     const projectDiv = document.getElementById(`${projectTitle}${projectPriority}`);
     const dupProject = document.getElementById(`${projectTitle}`);
-    console.log(projectDiv);
 
     if (projectPriority === 1) {
         projectDiv.classList.add('project-div-priority-1');
