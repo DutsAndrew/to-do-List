@@ -10,7 +10,7 @@ import { archiveIt } from './archive-it';
 import { deleteItem } from './delete-item';
 import { viewProject } from './view-project';
 import { editProject } from './edit-project';
-import { addTask } from './add-task';
+import { addTaskController } from './add-task';
 import { assignPriorityColors } from './set-priority';
 import flagSVG from '../svgs/flag.svg';
 
@@ -50,6 +50,7 @@ function addProjectNav() {
                 formContainer.classList.add('add-item-form-container');
             
                 const itemFieldset = document.createElement('fieldset');
+                    itemFieldset.classList.add('item-fieldset');
 
                     const labelForTitle = document.createElement('label');
                         labelForTitle.classList.add('label-title');
@@ -314,7 +315,9 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             const addTaskContainer = document.createElement('div');
                 addTaskContainer.classList.add('add-task-container');
                 addTaskContainer.setAttribute('id', `add-task ${projectTitle}`);
-                addTaskContainer.addEventListener('click', addTask);
+                addTaskContainer.onclick = function(e) {
+                    addTaskController(e);
+                }
 
                 const addTaskSvg = document.createElement('div');
                     addTaskSvg.setAttribute('id', 'add-task-svg');

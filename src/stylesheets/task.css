@@ -1,0 +1,61 @@
+.project-tasks {
+    display: flex;
+    flex-flow: column wrap;
+    width: 50vw;
+    height: 30vh;
+    overflow: scroll;
+    background-color: #181818;
+    color: #f2f2f2;
+    position: absolute; left: 30vw; top: 18vh;
+}
+
+.task-form-container {
+    display: flex;
+    flex-flow: column wrap;
+    width: 45vw;
+    height: 25vh;
+}
+
+.task-fieldset {
+    display: flex;
+    flex-flow: column wrap;
+    width: 45vw;
+    height: 25vh;
+    align-items: center;
+}
+
+.task-item {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0.25em;
+}
+
+.input-task {
+    display: flex;
+    width: 45vw;
+    margin: 0;
+    padding: 0.25em;
+}
+
+.task-submit-button {
+    display: flex;
+    width: 12em;
+    height: 3em;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+    background-color: #41fc03;
+}
+
+.task-cancel-button {
+    display: flex;
+    width: 12em;
+    height: 3em;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+    background-color: #de1d1d;
+}

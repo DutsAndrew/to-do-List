@@ -16,7 +16,7 @@
     height: 79vh;
 }
 
-fieldset {
+.item-fieldset {
     display: flex;
     flex-flow: column wrap;
     width: 59vw;
@@ -149,7 +149,6 @@ fieldset {
     align-items: center;
     width: 18vw;
     height: 5vh;
-    background-color: #f2f2f2;
     color: #282828;
     opacity: 90%;
     font-size: 1.5em;
@@ -166,7 +165,6 @@ fieldset {
     align-items: center;
     width: 18vw;
     height: 5vh;
-    background-color: #f2f2f2;
     color: #282828;
     opacity: 90%;
     font-size: 1.5em;

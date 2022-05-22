@@ -17,7 +17,8 @@ import './stylesheets/header.css';
 import './stylesheets/sidebar.css';
 import './stylesheets/todos.css';
 import './stylesheets/display.css';
-import './stylesheets/add-item.css';
+import './stylesheets/project.css';
+import './stylesheets/task.css';
 
 // Page Load
 headerLoad();
