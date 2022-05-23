@@ -34,7 +34,8 @@ function addProjectController() {
 function closeAddProjectNav() {
     const content = document.querySelector('#content');
     const addProjectNav = document.querySelector('.add-item-nav');
-        content.removeChild(addProjectNav);
+    
+    content.removeChild(addProjectNav);
     addProjectFormOpen = false;
 }
 

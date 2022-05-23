@@ -1,8 +1,8 @@
-.project-tasks {
+.task-form-nav {
     display: flex;
     flex-flow: column wrap;
     width: 50vw;
-    height: 30vh;
+    height: 35vh;
     overflow: scroll;
     background-color: #181818;
     color: #f2f2f2;
@@ -13,14 +13,14 @@
     display: flex;
     flex-flow: column wrap;
     width: 45vw;
-    height: 25vh;
+    height: 35vh;
 }
 
 .task-fieldset {
     display: flex;
     flex-flow: column wrap;
     width: 45vw;
-    height: 25vh;
+    height: 35vh;
     align-items: center;
 }
 
@@ -37,12 +37,13 @@
     width: 45vw;
     margin: 0;
     padding: 0.25em;
+    font-size: 1.75em;
 }
 
 .task-submit-button {
     display: flex;
-    width: 12em;
-    height: 3em;
+    width: 8em;
+    height: 2em;
     font-size: 1em;
     justify-content: center;
     align-items: center;
@@ -52,10 +53,13 @@
 
 .task-cancel-button {
     display: flex;
-    width: 12em;
-    height: 3em;
+    width: 8em;
+    height: 2em;
     font-size: 1em;
     justify-content: center;
     align-items: center;
     background-color: #de1d1d;
 }
+
+/* task bar that gets added to project nav */
+
