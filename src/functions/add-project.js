@@ -263,10 +263,10 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             projectDisplayContainer.classList.add('project-display-container');
 
             const checkBox = document.createElement('input');
-                    checkBox.setAttribute('id', 'project-complete-checkbox');
+                    checkBox.setAttribute('id', 'project-checkbox');
                     checkBox.setAttribute('type', 'checkbox');
                     checkBox.classList.add('checkbox-access');
-                    checkBox.addEventListener('click', projectNavController);
+                    checkBox.addEventListener('change', projectNavController);
 
             // Hidden until checkbox is selected
             const archiveItButton = document.createElement('div');
