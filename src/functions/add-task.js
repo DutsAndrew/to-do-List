@@ -170,7 +170,7 @@ function createTaskCard(taskDescription, taskNumber) {
 
                 const deleteProjectButton = document.createElement('div');
                     deleteProjectButton.setAttribute('id', 'delete-project-button');
-                    deleteProjectButton.classList.add('delete-project');
+                    deleteProjectButton.classList.add('delete-task');
                     deleteProjectButton.addEventListener('click', deleteTask);
             
             taskCardRight.appendChild(editProjectButton);
@@ -194,3 +194,33 @@ function editTask() {
 function deleteTask() {
 
 }
+
+// code to turn on and off add task button when viewing a project
+const addTaskContainer = document.querySelectorAll('#add-task');
+const addTaskSvg = document.querySelectorAll('#add-task-svg');
+const addTaskText = document.querySelectorAll('#add-task-text');
+
+addTaskContainer.forEach(taskContainer => {
+    taskContainer.classList.remove('add-task-container-closed');
+    taskContainer.classList.add('add-task-container-open');
+})
+addTaskSvg.forEach(addTaskSvg => {
+    addTaskSvg.classList.remove('add-task-svg-closed');
+    addTaskSvg.classList.add('add-task-svg-open');
+})
+addTaskText.forEach(taskText => {
+    taskText.classList.remove('add-task-text-closed');
+    taskText.classList.add('add-task-text-open');
+})
+addTaskContainer.forEach(taskContainer => {
+    taskContainer.classList.add('add-task-container-closed');
+    taskContainer.classList.remove('add-task-container-open');
+})
+addTaskSvg.forEach(addTaskSvg => {
+    addTaskSvg.classList.add('add-task-svg-closed');
+    addTaskSvg.classList.remove('add-task-svg-open');
+})
+addTaskText.forEach(taskText => {
+    taskText.classList.add('add-task-text-closed');
+    taskText.classList.remove('add-task-text-open');
+})

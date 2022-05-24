@@ -1,3 +1,5 @@
+/* style for Task form popup */
+
 .task-form-nav {
     display: flex;
     flex-flow: column wrap;
@@ -48,6 +50,8 @@
     justify-content: center;
     align-items: center;
     margin: 1%;
+    margin-top: 2.5%;
+
     background-color: #41fc03;
 }
 
@@ -63,3 +67,46 @@
 
 /* task bar that gets added to project nav */
 
+.task-card {
+    display: inline-block;
+    flex-flow: row wrap;
+    width: 84vw;
+    height: 10vh;
+    border-left: 0.2em solid #f2f2f2;
+    align-items: center;
+    justify-content: center;
+    opacity: 90%;
+    position: relative;
+}
+
+.task-card-left {
+
+}
+
+.checkbox-complete {
+
+}
+
+.complete-button-closed {
+
+}
+
+.task-card-middle {
+
+}
+
+.task-item {
+
+}
+
+.task-card-right {
+
+}
+
+.edit-task {
+
+}
+
+.delete-task {
+
+}

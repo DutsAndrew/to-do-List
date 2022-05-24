@@ -8,9 +8,11 @@ export {
 import { setPriority } from './set-priority';
 import { archiveIt } from './archive-it';
 import { deleteItem } from './delete-item';
-import { viewProject } from './view-project';
+import { viewProjectByButton } from './view-project';
+import { viewProjectByClickOnDiv } from './view-project';
 import { editProject } from './edit-project';
 import { addTaskController } from './add-task';
+import { projectNavController } from './project-nav';
 import { assignPriorityColors } from './set-priority';
 import flagSVG from '../svgs/flag.svg';
 
@@ -263,16 +265,8 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             const checkBox = document.createElement('input');
                     checkBox.setAttribute('id', 'project-complete-checkbox');
                     checkBox.setAttribute('type', 'checkbox');
-                    checkBox.classList.add('checkbox-complete');
-                    checkBox.onclick = function() {
-                        if (archiveItButton.classList.contains('archive-button-closed')) {
-                            archiveItButton.classList.remove('archive-button-closed');
-                            archiveItButton.classList.add('archive-button-open');
-                        } else if (archiveItButton.classList.contains('archive-button-open')) {
-                            archiveItButton.classList.remove('archive-button-open');
-                            archiveItButton.classList.add('archive-button-closed');
-                        }
-                    }
+                    checkBox.classList.add('checkbox-access');
+                    checkBox.addEventListener('click', projectNavController);
 
             // Hidden until checkbox is selected
             const archiveItButton = document.createElement('div');
@@ -299,22 +293,26 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
                 projectDueDisplay.textContent = projectDue;
 
             const viewProjectContainer = document.createElement('div');
-                    viewProjectContainer.classList.add('view-project-container');
+                    viewProjectContainer.classList.add('view-project-container-closed');
                     viewProjectContainer.setAttribute('id', `View ${projectTitle}`)
-                    viewProjectContainer.addEventListener('click', viewProject);
+                    viewProjectContainer.onclick = function(e) {
+                        viewProjectByButton(e);
+                    }
 
                 const viewProjectSvg = document.createElement('div');
-                    viewProjectSvg.classList.add('view-project-svg');
+                    viewProjectSvg.classList.add('view-project-svg-closed');
+                    viewProjectSvg.setAttribute('id', 'view-project-svg')
                 
                 const viewProjectText = document.createElement('p');
-                    viewProjectText.classList.add('view-project-text');
+                    viewProjectText.classList.add('view-project-text-closed');
+                    viewProjectText.setAttribute('id', 'view-project-text');
                     viewProjectText.textContent = "View Project";
 
                 viewProjectContainer.appendChild(viewProjectSvg);
                 viewProjectContainer.appendChild(viewProjectText);
 
             const addTaskContainer = document.createElement('div');
-                addTaskContainer.classList.add('add-task-container');
+                addTaskContainer.classList.add('add-task-container-closed');
                 addTaskContainer.setAttribute('id', `add-task ${projectTitle}`);
                 addTaskContainer.onclick = function(e) {
                     addTaskController(e);
@@ -322,11 +320,11 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
                 const addTaskSvg = document.createElement('div');
                     addTaskSvg.setAttribute('id', 'add-task-svg');
-                    addTaskSvg.classList.add('add-task-svg');
+                    addTaskSvg.classList.add('add-task-svg-closed');
 
                 const addTaskText = document.createElement('p');
                     addTaskText.setAttribute('id', 'add-task-text');
-                    addTaskText.classList.add('add-task-text');
+                    addTaskText.classList.add('add-task-text-closed');
                     addTaskText.textContent = "Add Task";
 
                 addTaskContainer.appendChild(addTaskSvg);
@@ -334,12 +332,12 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
             const editProjectButton = document.createElement('div');
                 editProjectButton.setAttribute('id', 'edit-project-button');
-                editProjectButton.classList.add('edit-project');
+                editProjectButton.classList.add('edit-project-closed');
                 editProjectButton.addEventListener('click', editProject);
 
             const deleteProjectButton = document.createElement('div');
                 deleteProjectButton.setAttribute('id', 'delete-project-button');
-                deleteProjectButton.classList.add('delete-project');
+                deleteProjectButton.classList.add('delete-project-closed');
                 deleteProjectButton.addEventListener('click', deleteItem);
 
             projectDisplayContainer.appendChild(checkBox);
