@@ -5,9 +5,9 @@ export {
 function deleteItem(e) {
     let findId;
     let projectDup;
-    let targetElement = e.path[2];
+    let targetElement = e.composedPath()[2];
 
-    findId = e.path[1].childNodes[2].childNodes[0].data;
+    findId = e.composedPath()[1].id;
     projectDup = document.getElementById(findId);
     projectDup.remove();
 

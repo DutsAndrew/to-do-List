@@ -9,6 +9,9 @@ function projectNavController(e) {
     let viewProjectContainer = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
         let viewProjectSvg = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[0];
         let viewProjectText = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
+    let addTaskContainer = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
+        let addTaskSvg = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[0];
+        let addTaskText = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
     let editButton = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
     let deleteButton = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
 
@@ -25,11 +28,20 @@ function projectNavController(e) {
             viewProjectText.classList.remove('view-project-text-closed');
             viewProjectText.classList.add('view-project-text-open');
 
-            editButton.classList.remove('edit-project-closed');
-            editButton.classList.add('edit-project-open');
+        addTaskContainer.classList.remove('add-task-container-closed');
+        addTaskContainer.classList.add('add-task-container-open');
+        
+            addTaskSvg.classList.remove('add-task-svg-closed');
+            addTaskSvg.classList.add('add-task-svg-open');
+        
+            addTaskText.classList.remove('add-task-text-closed');
+            addTaskText.classList.add('add-task-text-open');
 
-            deleteButton.classList.remove('delete-project-closed');
-            deleteButton.classList.add('delete-project-open');
+        editButton.classList.remove('edit-project-closed');
+        editButton.classList.add('edit-project-open');
+
+        deleteButton.classList.remove('delete-project-closed');
+        deleteButton.classList.add('delete-project-open');
     } else if (checkBoxChecked === false ) {
         archiveButton.classList.remove('archive-button-open');
         archiveButton.classList.add('archive-button-closed');
@@ -43,12 +55,21 @@ function projectNavController(e) {
             viewProjectText.classList.remove('view-project-text-open');
             viewProjectText.classList.add('view-project-text-closed');
 
-            editButton.classList.remove('edit-project-open');
-            editButton.classList.add('edit-project-closed');
+        addTaskContainer.classList.remove('add-task-container-open');
+        addTaskContainer.classList.add('add-task-container-closed');
+        
+            addTaskSvg.classList.remove('add-task-svg-open');
+            addTaskSvg.classList.add('add-task-svg-closed');
+        
+            addTaskText.classList.remove('add-task-text-open');
+            addTaskText.classList.add('add-task-text-closed');
 
-            deleteButton.classList.remove('delete-project-open');
-            deleteButton.classList.add('delete-project-closed');
+        editButton.classList.remove('edit-project-open');
+        editButton.classList.add('edit-project-closed');
+
+        deleteButton.classList.remove('delete-project-open');
+        deleteButton.classList.add('delete-project-closed');
     }
-
     return
 }
+

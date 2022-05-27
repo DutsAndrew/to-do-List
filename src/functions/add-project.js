@@ -8,8 +8,7 @@ export {
 import { setPriority } from './set-priority';
 import { archiveIt } from './archive-it';
 import { deleteItem } from './delete-item';
-import { viewProjectByButton } from './view-project';
-import { viewProjectByClickOnDiv } from './view-project';
+import { viewProject } from './view-project';
 import { editProject } from './edit-project';
 import { addTaskController } from './add-task';
 import { projectNavController } from './project-nav';
@@ -296,7 +295,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
                     viewProjectContainer.classList.add('view-project-container-closed');
                     viewProjectContainer.setAttribute('id', `View ${projectTitle}`)
                     viewProjectContainer.onclick = function(e) {
-                        viewProjectByButton(e);
+                        viewProject(e);
                     }
 
                 const viewProjectSvg = document.createElement('div');
@@ -315,6 +314,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
                 addTaskContainer.classList.add('add-task-container-closed');
                 addTaskContainer.setAttribute('id', `add-task ${projectTitle}`);
                 addTaskContainer.onclick = function(e) {
+                    viewProject(e);
                     addTaskController(e);
                 }
 
