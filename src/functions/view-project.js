@@ -18,8 +18,3 @@ function viewProject(e) {
         return
     }
 }
-
-// function addTaskAndView(e) {
-//     let projectToDisplayId = e.composedPath();
-//     console.log(projectToDisplayId);
-// }

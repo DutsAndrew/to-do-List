@@ -68,45 +68,91 @@
 /* task bar that gets added to project nav */
 
 .task-card {
-    display: inline-block;
+    display: flex;
     flex-flow: row wrap;
     width: 84vw;
-    height: 10vh;
+    height: 7vh;
+    margin-left: 5%;
     border-left: 0.2em solid #f2f2f2;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     opacity: 90%;
+    gap: 0.25em;
     position: relative;
 }
 
 .task-card-left {
-
+    display: flex;
+    flex-flow: row nowrap;
+    width: 7vw;
+    height: 7vh;
 }
 
 .checkbox-complete {
-
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2vw;
+    height: 2vh;
+    margin-left: 1em;
 }
 
-.complete-button-closed {
-
+.complete-button {
+    display: flex;
+    background: center / contain no-repeat url(../svgs/check.svg);
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2.5vw;
+    height: 2.5vh;
+    filter: invert(59%) sepia(15%) saturate(2772%) hue-rotate(63deg) brightness(100%) contrast(81%);
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .task-card-middle {
-
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 62vw;
+    height: 7vh;
 }
 
 .task-item {
-
+    color: #f2f2f2;
+    font-size: 1em;
 }
 
 .task-card-right {
-
+    display: flex;
+    flex-flow: row nowrap;
+    width: 5vw;
+    height: 7vh;
 }
 
 .edit-task {
-
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2.75vw;
+    height: 2.75vh;
+    background: center / contain no-repeat url(../svgs/edit-it.svg);
+    filter: invert(56%) sepia(72%) saturate(259%) hue-rotate(150deg) brightness(87%) contrast(85%);
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .delete-task {
-
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    width: 2.75vw;
+    height: 2.75vh;
+    background: center / contain no-repeat url(../svgs/delete.svg);
+    filter: invert(22%) sepia(42%) saturate(5109%) hue-rotate(348deg) brightness(104%) contrast(92%);
+    justify-content: center;
+    align-items: center;
 }

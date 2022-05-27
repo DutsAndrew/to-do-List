@@ -2,6 +2,9 @@ export {
     addTaskController,
 }
 
+import { deleteTask } from './delete-item';
+import { editTask } from './edit-item';
+
 let taskNumber = 0;
 let formOpen = false;
 let myTasks = [];
@@ -142,10 +145,9 @@ function createTaskCard(taskDescription, taskNumber) {
                             
                         }
 
-                // Hidden until checkbox is selected
                 const completeButton = document.createElement('div');
                     completeButton.setAttribute('id', 'complete-it-button');
-                    completeButton.classList.add('complete-button-closed');
+                    completeButton.classList.add('complete-button');
                     completeButton.addEventListener('click', taskCompleted);
 
             taskCardLeft.appendChild(taskCheckBox);
@@ -171,7 +173,9 @@ function createTaskCard(taskDescription, taskNumber) {
                 const deleteProjectButton = document.createElement('div');
                     deleteProjectButton.setAttribute('id', 'delete-project-button');
                     deleteProjectButton.classList.add('delete-task');
-                    deleteProjectButton.addEventListener('click', deleteTask);
+                    deleteProjectButton.onclick = function(e) {
+                        deleteTask(e);
+                    }
             
             taskCardRight.appendChild(editProjectButton);
             taskCardRight.appendChild(deleteProjectButton);
@@ -185,12 +189,4 @@ function createTaskCard(taskDescription, taskNumber) {
 
 function taskCompleted() {
     
-}
-
-function editTask() {
-
-}
-
-function deleteTask() {
-
 }

@@ -7,9 +7,9 @@ export {
 // import { add } from 'date-fns';
 import { setPriority } from './set-priority';
 import { archiveIt } from './archive-it';
-import { deleteItem } from './delete-item';
+import { deleteProject } from './delete-item';
 import { viewProject } from './view-project';
-import { editProject } from './edit-project';
+import { editProject } from './edit-item';
 import { addTaskController } from './add-task';
 import { projectNavController } from './project-nav';
 import { assignPriorityColors } from './set-priority';
@@ -338,7 +338,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             const deleteProjectButton = document.createElement('div');
                 deleteProjectButton.setAttribute('id', 'delete-project-button');
                 deleteProjectButton.classList.add('delete-project-closed');
-                deleteProjectButton.addEventListener('click', deleteItem);
+                deleteProjectButton.addEventListener('click', deleteProject);
 
             projectDisplayContainer.appendChild(checkBox);
             projectDisplayContainer.appendChild(archiveItButton);

@@ -1,8 +1,9 @@
 export {
-    deleteItem,
+    deleteProject,
+    deleteTask,
 }
 
-function deleteItem(e) {
+function deleteProject(e) {
     let findId;
     let projectDup;
     let targetElement = e.composedPath()[2];
@@ -12,4 +13,9 @@ function deleteItem(e) {
     projectDup.remove();
 
     targetElement.remove();
+}
+
+function deleteTask(e) {
+    let selectedTask = e.composedPath()[2];
+    selectedTask.remove();
 }
