@@ -6,7 +6,6 @@ export {
 let displaySelected;
 
 function setPriority(selectedPriority) {
-    'use strict';
     
     const priority1 = document.getElementById('priority-button-selector-1');
     const priority2 = document.getElementById('priority-button-selector-2');

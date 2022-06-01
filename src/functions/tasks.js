@@ -2,8 +2,7 @@ export {
     addTaskController,
 }
 
-import { deleteTask } from './delete-item';
-import { editTask } from './edit-item';
+import { taskNavController } from './item-navs';
 
 let taskNumber = 0;
 let formOpen = false;
@@ -141,9 +140,7 @@ function createTaskCard(taskDescription, taskNumber) {
                     taskCheckBox.setAttribute('id', 'task-complete-checkbox');
                     taskCheckBox.setAttribute('type', 'checkbox');
                     taskCheckBox.classList.add('checkbox-complete');
-                    taskCheckBox.onclick = function() {
-                            
-                        }
+                    taskCheckBox.addEventListener('change', taskNavController);
 
                 const completeButton = document.createElement('div');
                     completeButton.setAttribute('id', 'complete-it-button');
@@ -189,4 +186,13 @@ function createTaskCard(taskDescription, taskNumber) {
 
 function taskCompleted() {
     
+}
+
+function editTask() {
+    console.log("Edit Task was clicked");
+}
+
+function deleteTask(e) {
+    let selectedTask = e.composedPath()[2];
+    selectedTask.remove();
 }

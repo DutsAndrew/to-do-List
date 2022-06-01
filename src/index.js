@@ -7,10 +7,10 @@ import { headerLoad } from './pages/header';
 import { loadSideBar } from './pages/side-bar';
 import { sideBarController } from './pages/side-bar';
 import { loadHome } from './functions/load-home';
-import { addProjectController } from './functions/add-project';
+import { addProjectController } from './functions/projects';
 import { displayLoad } from './pages/display';
-import { buildProjectCards } from './functions/add-project';
-import { createTemplateProjects } from './functions/add-project';
+import { buildProjectCards } from './functions/projects';
+import { createTemplateProjects } from './functions/projects';
 
 // All CSS style sheets for design
 import './stylesheets/header.css';

@@ -1,5 +1,6 @@
 export {
     projectNavController,
+    taskNavController,
 }
 
 function projectNavController(e) {
@@ -73,3 +74,17 @@ function projectNavController(e) {
     return
 }
 
+function taskNavController(e) {
+    let checkBoxChecked = e.composedPath()[0].checked;
+    
+    let taskCompleteButton = e.target.nextSibling;
+    let editButton = e.target.nextSibling.nextSibling;
+    console.log(editButton);
+
+    if (checkBoxChecked === true) {
+
+    } else if (checkBoxChecked === false) {
+
+    }
+    return
+}

@@ -7,11 +7,8 @@ export {
 // import { add } from 'date-fns';
 import { setPriority } from './set-priority';
 import { archiveIt } from './archive-it';
-import { deleteProject } from './delete-item';
-import { viewProject } from './view-project';
-import { editProject } from './edit-item';
-import { addTaskController } from './add-task';
-import { projectNavController } from './project-nav';
+import { addTaskController } from './tasks';
+import { projectNavController } from './item-navs';
 import { assignPriorityColors } from './set-priority';
 import flagSVG from '../svgs/flag.svg';
 
@@ -40,9 +37,7 @@ function closeAddProjectNav() {
     addProjectFormOpen = false;
 }
 
-function addProjectNav() {
-    console.log('Adding item... Opening nav to add item... Please wait...');
-
+function addProjectNav(projectTitle, projectDescription, projectPriority) {
     const content = document.querySelector('#content');
 
         const addProjectNav = document.createElement('div');
@@ -66,7 +61,11 @@ function addProjectNav() {
                         inputForTitle.id = "title";
                         inputForTitle.rows = "2";
                         inputForTitle.cols = "50";
-                        inputForTitle.placeholder = "e.g., Read 15 mins, Workout, Make Dinner";
+                        if (projectTitle != undefined || null) {
+                            inputForTitle.textContent = `${projectTitle}`;
+                        } else if (projectTitle == undefined || null) {
+                            inputForTitle.placeholder = "e.g., Read 15 mins, Workout, Make Dinner";
+                        }
 
                     const labelForDescription = document.createElement('label');
                         labelForDescription.classList.add('label-description');
@@ -80,7 +79,11 @@ function addProjectNav() {
                         inputForDescription.id = "description";
                         inputForDescription.rows = "5";
                         inputForDescription.cols = "50";
-                        inputForDescription.placeholder = "Description";
+                        if (projectDescription != undefined || null) {
+                            inputForDescription.textContent = `${projectDescription}`;
+                        } else if (projectDescription == undefined || null) {
+                            inputForDescription.placeholder = "Description";
+                        }
 
                     const labelForCalendar = document.createElement('label');
                         labelForCalendar.classList.add('label-calendar');
@@ -333,7 +336,9 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             const editProjectButton = document.createElement('div');
                 editProjectButton.setAttribute('id', 'edit-project-button');
                 editProjectButton.classList.add('edit-project-closed');
-                editProjectButton.addEventListener('click', editProject);
+                editProjectButton.onclick = function(e) {
+                    editProject(e);
+                }
 
             const deleteProjectButton = document.createElement('div');
                 deleteProjectButton.setAttribute('id', 'delete-project-button');
@@ -377,4 +382,65 @@ function createTemplateProjects() {
 
     let templateProject4 = new Project("Study for GMAT", "flashcards for 10 minutes, read study guides for 30 minutes, and take a practice test", "2022-09-09", 2, "no");
     myProjects.push(templateProject4);
+}
+
+function viewProject(e) {
+    let projectToDisplayId = e.composedPath()[3].id;
+
+    if (projectToDisplayId != "display") {
+        const allProjects = document.querySelectorAll('.project-divs');
+        allProjects.forEach(project => {
+            project.classList.remove('project-divs');
+            project.classList.add('project-divs-hidden');
+        });
+        const projectToDisplay = document.getElementById(`${projectToDisplayId}`);
+            projectToDisplay.classList.remove('project-divs-hidden');
+            projectToDisplay.classList.add('project-divs');
+    } else if (projectToDisplayId == "display") {
+        return
+    }
+}
+
+function editProject(e) {
+    let projectTitle = (e.composedPath()[1].children[2].textContent);
+        console.log(projectTitle);
+    let projectDescription = (e.composedPath()[1].children[3].textContent);
+        console.log(projectDescription);
+        console.log(myProjects);
+
+    let findTitle = myProjects.findIndex(function(project) {
+        if (project.title == `${projectTitle}`) {
+            return true;
+        }
+    });
+    console.log(findTitle);
+
+    let projectPriority;
+        if (e.composedPath()[2].classList.contains('project-div-priority-1')) {
+            console.log("Project Priority is 1");
+            projectPriority = 1;
+        } else if (e.composedPath()[2].classList.contains('project-div-priority-2')) {
+            console.log("Project Priority is 2");
+            projectPriority = 2;
+        } else if (e.composedPath()[2].classList.contains('project-div-priority-3')) {
+            console.log("Project Priority is 3");
+            projectPriority = 3;
+        } else if (e.composedPath()[2].classList.contains('project-div-priority-4')) {
+            console.log("Project Priority is 4");
+            projectPriority = 4;
+        }
+
+    addProjectNav(projectTitle, projectDescription, projectPriority);
+}
+
+function deleteProject(e) {
+    let findId;
+    let projectDup;
+    let targetElement = e.composedPath()[2];
+
+    findId = e.composedPath()[1].id;
+    projectDup = document.getElementById(findId);
+    projectDup.remove();
+
+    targetElement.remove();
 }
