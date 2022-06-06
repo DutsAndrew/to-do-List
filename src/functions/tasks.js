@@ -4,7 +4,6 @@ export {
 
 import { taskNavController } from './item-navs';
 
-let taskNumber = 0;
 let formOpen = false;
 let myTasks = [];
 let selectedProject;
@@ -90,21 +89,18 @@ function openTaskForm() {
 }
 
 function storeTaskValues() {
-    taskNumber++;
-
     const taskDescription = document.querySelector('#task').value;
     const taskBuild = "no";
 
-    let newTask = new Task(taskDescription, taskNumber, taskBuild);
+    let newTask = new Task(taskDescription, taskBuild);
     myTasks.push(newTask);
     console.log(myTasks);
 
     buildTaskDiv();
 }
 
-function Task(description, taskNumber, build) {
+function Task(description, build) {
     this.description = description;
-    this.taskNumber = taskNumber;
     this.build = build;
     this.getInfo = function() {
         return(`${description}, ${taskNumber}`);
@@ -131,7 +127,7 @@ function createTaskCard(taskDescription, taskNumber) {
 
         const taskCard = document.createElement('div');
             taskCard.classList.add('task-card');
-            taskCard.setAttribute('id', `${selectedProject}-${taskNumber}`);
+            taskCard.setAttribute('id', `${selectedProject}`);
 
             const taskCardLeft = document.createElement('div');
                 taskCardLeft.classList.add('task-card-left');
@@ -195,4 +191,13 @@ function editTask() {
 function deleteTask(e) {
     let selectedTask = e.composedPath()[2];
     selectedTask.remove();
+
+    let taskDescription = (e.composedPath()[2].childNodes[1].childNodes[0].textContent);
+
+    let _findTask = myTasks.findIndex(function(task, index) {
+        if (task.description == `${taskDescription}`) {
+            return true;
+        }
+    });
+    myTasks.splice(_findTask, 1);
 }

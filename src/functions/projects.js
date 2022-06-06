@@ -443,4 +443,14 @@ function deleteProject(e) {
     projectDup.remove();
 
     targetElement.remove();
+
+    let projectTitle = (e.composedPath()[1].children[2].textContent);
+
+    let _findTitle = myProjects.findIndex(function(project, index) {
+            if (project.title == `${projectTitle}`) {
+                return true;
+            }
+    });
+    myProjects.splice(_findTitle, 1);
+    console.log(myProjects);
 }
