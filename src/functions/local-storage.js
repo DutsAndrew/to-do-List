@@ -1,8 +1,8 @@
 export {
-    storeLocally,
+    checkIfStorageIsAvailable,
 }
 
-function storeLocally() {
+function checkIfStorageIsAvailable() {
     if (storageAvailable('localStorage')) {
         console.log('Local Storage is working');
       }

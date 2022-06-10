@@ -1,8 +1,7 @@
 export {
     addProjectController,
-    buildProjectCards,
-    // getProjectsFromStorage,
-    // createTemplateProjects,
+    projectCardController,
+    renderProjects,
 }
 
 // import { add } from 'date-fns';
@@ -258,15 +257,25 @@ function getLocalStorage(projectTitle) {
     myProjects.push(retrievedProject);
     console.log(myProjects);
     
-    buildProjectCards();
+    projectCardController();
 }
 
 // For adding ALL projects from local storage to page
-// function renderProjects(retrievedProject) {
-//     console.log(retrievedProject);
-// }
+function renderProjects(retrievedProject) {
+    console.log(retrievedProject);
 
-function buildProjectCards() {
+   // Use this function when loading home or on first load -- from getLocalStorage, project.js
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        let value = localStorage.getItem(key);
+        let retrievedProject = JSON.parse(value);
+        console.log(retrievedProject);
+        myProjects.push(retrievedProject);
+        console.log(myProjects);
+    } 
+}
+
+function projectCardController() {
     myProjects.forEach(function (item) {
         let projectTitle = item.title;
         let projectDescription = item.description;
