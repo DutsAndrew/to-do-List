@@ -1,7 +1,8 @@
 export {
     addProjectController,
     buildProjectCards,
-    createTemplateProjects,
+    // getProjectsFromStorage,
+    // createTemplateProjects,
 }
 
 // import { add } from 'date-fns';
@@ -17,6 +18,7 @@ let addProjectFormOpen = false;
 let today = new Date().toISOString().slice(0, 10);
 let priority = null;
 let myProjects = [];
+let projectKey = 0;
 
 // Add-Item Pop Nav Controller
 function addProjectController() {
@@ -217,23 +219,52 @@ function storeFormValues() {
     const projectDue = document.querySelector('#due').value;
     const projectBuild = "no";
 
-    let newProject = new Project(projectTitle, projectDescription, projectDue, priority, projectBuild);
-    myProjects.push(newProject);
-    console.log(myProjects);
+    projectKey++;
 
-    buildProjectCards();
+    storageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
 }
 
-function Project(title, description, due, priority, build) {
+function Project(title, description, due, priority, build, key) {
     this.title = title;
     this.description = description;
     this.due = due;
     this.priority = priority;
     this.build = build;
+    this.key = key;
     this.getInfo = function() {
-        return(`${title}, ${description}, ${due}, ${priority}`);
+        return(`${title}, ${description}, ${due}, ${priority}, ${key}`);
     };
 }
+
+function storageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
+    if(!localStorage.getItem(`${projectTitle}`)) {
+        populateStorage(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
+        getLocalStorage(projectTitle);
+      } else {
+        getLocalStorage(projectTitle);
+      }
+}
+
+function populateStorage(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
+    console.log(localStorage);
+    let newProject = new Project(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
+    localStorage.setItem(`${projectTitle}`, JSON.stringify(newProject));
+}
+
+function getLocalStorage(projectTitle) {
+    let getProject = window.localStorage.getItem(projectTitle);
+    let retrievedProject = JSON.parse(getProject);
+
+    myProjects.push(retrievedProject);
+    console.log(myProjects);
+    
+    buildProjectCards();
+}
+
+// For adding ALL projects from local storage to page
+// function renderProjects(retrievedProject) {
+//     console.log(retrievedProject);
+// }
 
 function buildProjectCards() {
     myProjects.forEach(function (item) {
@@ -241,10 +272,11 @@ function buildProjectCards() {
         let projectDescription = item.description;
         let projectDue = item.due;
         let projectPriority = item.priority;
+        let projectKey = item.key;
 
         if (item.build == "no") {
             item.build = "yes";
-            createProjectCard(projectTitle, projectDescription, projectDue, projectPriority);
+            createProjectCard(projectTitle, projectDescription, projectDue, projectPriority, projectKey);
             assignPriorityColors(projectTitle, projectPriority);
         } else if (item.build == "yes") {
             return
@@ -252,13 +284,14 @@ function buildProjectCards() {
     });
 }
 
-function createProjectCard(projectTitle, projectDescription, projectDue, projectPriority) {
+function createProjectCard(projectTitle, projectDescription, projectDue, projectPriority, projectKey) {
     const projectHolder = document.querySelector('#project-holder');
     const display = document.querySelector('#display');
 
     const projectDiv = document.createElement('div');
         projectDiv.classList.add('project-divs');
         projectDiv.setAttribute('id', `${projectTitle}${projectPriority}`);
+        projectDiv.classList.add(`${projectKey}`)
         
         const projectDisplayContainer = document.createElement('div');
             projectDisplayContainer.setAttribute('id', projectTitle);
@@ -370,20 +403,6 @@ function calculateDaysLeft(today, due) {
     return differenceInDays / (1000 * 60 * 60 * 24);
 }
 
-function createTemplateProjects() {
-    let templateProject = new Project("Read", "15 mins", "2050-09-09", 3, "no");
-    myProjects.push(templateProject);
-
-    let templateProject2 = new Project("Make Dinner", "Shopping List: pasta, tomato sauce, meatballs, salad, garlic bread, tomatoes, onions, basil, garlic, pepper, salt, and cheese", "2022-09-09", 1, "no");
-    myProjects.push(templateProject2);
-
-    let templateProject3 = new Project("Spring Cleaning", "Need to clean: closets, storage-shed, bedrooms, kitchen, coat-closet, and dresser", "2023-05-01", 4, "no");
-    myProjects.push(templateProject3);
-
-    let templateProject4 = new Project("Study for GMAT", "flashcards for 10 minutes, read study guides for 30 minutes, and take a practice test", "2022-09-09", 2, "no");
-    myProjects.push(templateProject4);
-}
-
 function viewProject(e) {
     let projectToDisplayId = e.composedPath()[3].id;
 
@@ -452,5 +471,5 @@ function deleteProject(e) {
             }
     });
     myProjects.splice(_findTitle, 1);
-    console.log(myProjects);
+    localStorage.removeItem(`${projectTitle}`);
 }

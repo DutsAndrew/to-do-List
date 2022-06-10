@@ -1,18 +1,17 @@
-export {
+export { 
     loadHome,
 }
 
 function loadHome() {
     location.reload();
 
-    // if () {
-    //     addTaskContainer.classList.remove('add-task-container-open');
-    //     addTaskContainer.classList.add('add-task-container-closed');
-
-    //         addTaskSvg.classList.remove('dd-task-svg-open');
-    //         addTaskSvg.classList.add('dd-task-svg-closed');
-
-    //         addTaskText.classList.remove('add-task-text-open');
-    //         addTaskText.classList.add('add-task-text-closed');
+    // Use this function when loading home or on first load -- from getLocalStorage, project.js
+    // for (let i = 0; i < localStorage.length; i++) {
+    //     let key = localStorage.key(i);
+    //     let value = localStorage.getItem(key);
+    //     let retrievedProject = JSON.parse(value);
+    //     console.log(retrievedProject);
+    //     myProjects.push(retrievedProject);
+    //     console.log(myProjects);
     // }
 }
