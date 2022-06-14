@@ -6,7 +6,7 @@ export {
 
 // import { add } from 'date-fns';
 import { setPriority } from './set-priority';
-import { archiveIt } from './archive-it';
+import { completeIt } from './archive-it';
 import { addTaskController } from './tasks';
 import { projectNavController } from './item-navs';
 import { assignPriorityColors } from './set-priority';
@@ -304,10 +304,10 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
                     checkBox.addEventListener('change', projectNavController);
 
             // Hidden until checkbox is selected
-            const archiveItButton = document.createElement('div');
-                archiveItButton.setAttribute('id', 'archive-it-button');
-                archiveItButton.classList.add('archive-button-closed');
-                archiveItButton.addEventListener('click', archiveIt);
+            const completeItButton = document.createElement('div');
+                completeItButton.setAttribute('id', 'complete-it-button');
+                completeItButton.classList.add('complete-button-closed');
+                completeItButton.addEventListener('click', completeIt);
 
             const projectTitleDisplay = document.createElement('p');
                 projectTitleDisplay.textContent = projectTitle;
@@ -379,7 +379,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
                 deleteProjectButton.addEventListener('click', deleteProject);
 
             projectDisplayContainer.appendChild(checkBox);
-            projectDisplayContainer.appendChild(archiveItButton);
+            projectDisplayContainer.appendChild(completeItButton);
             projectDisplayContainer.appendChild(projectTitleDisplay);
             projectDisplayContainer.appendChild(projectDescriptionDisplay);
             projectDisplayContainer.appendChild(projectDueDisplay);

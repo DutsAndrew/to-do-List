@@ -4,7 +4,7 @@ export {
 }
 
 let projectDropDownOpen = false;
-let archivedDropDownOpen = false;
+let completedDropDownOpen = false;
 
 function loadSideBar() {
     console.log('Sidebar is now opening.... Loading...');
@@ -84,25 +84,25 @@ function loadSideBar() {
                     projectHolder.setAttribute('id', 'project-holder');
                     projectHolder.classList.add('project-holder-closed');
 
-                const archivedProjects = document.createElement('div');
-                    archivedProjects.classList.add('side-bar-top-items');
-                    archivedProjects.setAttribute('id', 'archived-projects');
-                    archivedProjects.addEventListener('click', archivedDropDownController);
+                const completedProjects = document.createElement('div');
+                    completedProjects.classList.add('side-bar-top-items');
+                    completedProjects.setAttribute('id', 'completed-projects');
+                    completedProjects.addEventListener('click', completedDropDownController);
 
-                    const archivedProjectsText = document.createElement('p');
-                        archivedProjectsText.classList.add('archived-projects-text');
-                        archivedProjectsText.textContent = "Archived";
+                    const completedProjectsText = document.createElement('p');
+                        completedProjectsText.classList.add('completed-projects-text');
+                        completedProjectsText.textContent = "Completed";
 
-                        const archivedDropDown = document.createElement('div');
-                            archivedDropDown.classList.add('archived-drop-down-right-svg');
-                            archivedDropDown.setAttribute('id', 'archived-drop-down-svg');
+                        const completedDropDown = document.createElement('div');
+                            completedDropDown.classList.add('completed-drop-down-right-svg');
+                            completedDropDown.setAttribute('id', 'completed-drop-down-svg');
                     
-                        archivedProjects.appendChild(archivedProjectsText);
-                        archivedProjects.appendChild(archivedDropDown);
+                        completedProjects.appendChild(completedProjectsText);
+                        completedProjects.appendChild(completedDropDown);
 
-                        const archivedHolder = document.createElement('div');
-                            archivedHolder.setAttribute('id', 'archived-holder');
-                            archivedHolder.classList.add('archived-holder-closed');
+                        const completedHolder = document.createElement('div');
+                            completedHolder.setAttribute('id', 'completed-holder');
+                            completedHolder.classList.add('completed-holder-closed');
 
         sidebar.appendChild(dueToday);
         sidebar.appendChild(dueTodayHolder);
@@ -112,8 +112,8 @@ function loadSideBar() {
         sidebar.appendChild(dueThisMonthHolder);
         sidebar.appendChild(projectTitle);
         sidebar.appendChild(projectHolder);
-        sidebar.appendChild(archivedProjects);
-        sidebar.appendChild(archivedHolder);
+        sidebar.appendChild(completedProjects);
+        sidebar.appendChild(completedHolder);
     
     content.appendChild(sidebar);
 }
@@ -160,21 +160,21 @@ function projectDropDownController() {
     }
 }
 
-function archivedDropDownController() {
-    const archivedDropDownSvg = document.querySelector('#archived-drop-down-svg');
-    const archivedHolder = document.querySelector('#archived-holder');
+function completedDropDownController() {
+    const completedDropDownSvg = document.querySelector('#completed-drop-down-svg');
+    const completedHolder = document.querySelector('#completed-holder');
 
-    if (archivedDropDownOpen === false) {
-        archivedHolder.classList.remove('archived-holder-closed');
-        archivedHolder.classList.add('archived-holder-open');
-        archivedDropDownSvg.classList.remove('archived-drop-down-right-svg');
-        archivedDropDownSvg.classList.add('archived-drop-down-open-svg');
-        archivedDropDownOpen = true;
-    } else if (archivedDropDownOpen === true) {
-        archivedHolder.classList.remove('archived-holder-open');
-        archivedHolder.classList.add('archived-holder-closed');
-        archivedDropDownSvg.classList.remove('archived-drop-down-open-svg');
-        archivedDropDownSvg.classList.add('archived-drop-down-right-svg');
-        archivedDropDownOpen = false;
+    if (completedDropDownOpen === false) {
+        completedHolder.classList.remove('completed-holder-closed');
+        completedHolder.classList.add('completed-holder-open');
+        completedDropDownSvg.classList.remove('completed-drop-down-right-svg');
+        completedDropDownSvg.classList.add('completed-drop-down-open-svg');
+        completedDropDownOpen = true;
+    } else if (completedDropDownOpen === true) {
+        completedHolder.classList.remove('completed-holder-open');
+        completedHolder.classList.add('completed-holder-closed');
+        completedDropDownSvg.classList.remove('completed-drop-down-open-svg');
+        completedDropDownSvg.classList.add('completed-drop-down-right-svg');
+        completedDropDownOpen = false;
     }
 }

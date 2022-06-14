@@ -90,12 +90,12 @@ body {
     margin-left: 1em;
 }
 
-.archive-button-closed {
+.complete-button-closed {
     display: none;
     visibility: hidden;
 }
 
-.archive-button-open {
+.complete-button-open {
     display: flex;
     flex-flow: row nowrap;
     margin: auto;

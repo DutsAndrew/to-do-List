@@ -142,7 +142,6 @@ function renderTasks() {
         for (let i = 0; i < retrievedTasks.length; i++) {
             myTasks.push(retrievedTasks[i]);
         }
-        console.log(myTasks);
     }
     
 }
@@ -154,7 +153,6 @@ function taskCardController() {
         let taskKey = item.key
         if (item.build === "no") {
             item.build = "yes";
-            console.log(selectedProject);
             createTaskCard(selectedProject, taskDescription, taskKey);
         } else if (item.build == "yes") {
             return
@@ -164,7 +162,6 @@ function taskCardController() {
 
 function createTaskCard(selectedProject, taskDescription, taskKey) {
     const project = document.getElementById(selectedProject);
-    console.log(`This task is being appended to ${selectedProject}`);
 
         const taskCard = document.createElement('div');
             taskCard.classList.add('task-card-hidden');
@@ -181,7 +178,7 @@ function createTaskCard(selectedProject, taskDescription, taskKey) {
 
                 const completeButton = document.createElement('div');
                     completeButton.setAttribute('id', 'complete-it-button');
-                    completeButton.classList.add('complete-button');
+                    completeButton.classList.add('complete-button-hidden');
                     completeButton.addEventListener('click', taskCompleted);
 
             taskCardLeft.appendChild(taskCheckBox);
@@ -201,12 +198,12 @@ function createTaskCard(selectedProject, taskDescription, taskKey) {
 
                 const editProjectButton = document.createElement('div');
                     editProjectButton.setAttribute('id', 'edit-project-button');
-                    editProjectButton.classList.add('edit-task');
+                    editProjectButton.classList.add('edit-task-hidden');
                     editProjectButton.addEventListener('click', editTask);
 
                 const deleteProjectButton = document.createElement('div');
                     deleteProjectButton.setAttribute('id', 'delete-project-button');
-                    deleteProjectButton.classList.add('delete-task');
+                    deleteProjectButton.classList.add('delete-task-hidden');
                     deleteProjectButton.onclick = function(e) {
                         deleteTask(e);
                     }

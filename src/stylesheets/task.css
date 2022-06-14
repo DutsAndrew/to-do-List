@@ -114,6 +114,11 @@
     align-items: center;
 }
 
+.complete-button-hidden {
+    display: none;
+    visibility: hidden;
+}
+
 
 .task-card-middle {
     display: flex;
@@ -149,6 +154,11 @@
     align-items: center;
 }
 
+.edit-task-hidden {
+    display: none;
+    visibility: hidden;
+}
+
 .delete-task {
     display: flex;
     flex-flow: row nowrap;
@@ -159,4 +169,9 @@
     filter: invert(22%) sepia(42%) saturate(5109%) hue-rotate(348deg) brightness(104%) contrast(92%);
     justify-content: center;
     align-items: center;
+}
+
+.delete-task-hidden {
+    display: none;
+    visibility: hidden;
 }

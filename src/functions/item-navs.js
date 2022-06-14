@@ -6,7 +6,7 @@ export {
 function projectNavController(e) {
     let checkBoxChecked = e.composedPath()[0].checked;
 
-    let archiveButton = e.target.nextSibling;
+    let completeButton = e.target.nextSibling;
     let viewProjectContainer = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
         let viewProjectSvg = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[0];
         let viewProjectText = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
@@ -17,8 +17,8 @@ function projectNavController(e) {
     let deleteButton = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
 
     if (checkBoxChecked === true) {
-        archiveButton.classList.remove('archive-button-closed');
-        archiveButton.classList.add('archive-button-open');
+        completeButton.classList.remove('complete-button-closed');
+        completeButton.classList.add('complete-button-open');
 
         viewProjectContainer.classList.remove('view-project-container-closed');
         viewProjectContainer.classList.add('view-project-container-open');
@@ -44,8 +44,8 @@ function projectNavController(e) {
         deleteButton.classList.remove('delete-project-closed');
         deleteButton.classList.add('delete-project-open');
     } else if (checkBoxChecked === false ) {
-        archiveButton.classList.remove('archive-button-open');
-        archiveButton.classList.add('archive-button-closed');
+        completeButton.classList.remove('complete-button-open');
+        completeButton.classList.add('complete-button-closed');
 
         viewProjectContainer.classList.remove('view-project-container-open');
         viewProjectContainer.classList.add('view-project-container-closed');
@@ -76,15 +76,31 @@ function projectNavController(e) {
 
 function taskNavController(e) {
     let checkBoxChecked = e.composedPath()[0].checked;
+
+    console.log(checkBoxChecked);
     
     let taskCompleteButton = e.target.nextSibling;
-    let editButton = e.target.nextSibling.nextSibling;
-    console.log(editButton);
+    let editButton = e.target.parentNode.parentNode.childNodes[2].childNodes[0];
+    let deleteButton = e.target.parentNode.parentNode.childNodes[2].childNodes[1];
 
     if (checkBoxChecked === true) {
+        taskCompleteButton.classList.remove('complete-button-hidden');
+        taskCompleteButton.classList.add('complete-button');
 
+        editButton.classList.remove('edit-task-hidden');
+        editButton.classList.add('edit-task');
+
+        deleteButton.classList.remove('delete-task-hidden');
+        deleteButton.classList.add('delete-task');
     } else if (checkBoxChecked === false) {
+        taskCompleteButton.classList.remove('complete-button');
+        taskCompleteButton.classList.add('complete-button-hidden');
 
+        editButton.classList.remove('edit-task');
+        editButton.classList.add('edit-task-hidden');
+
+        deleteButton.classList.remove('delete-task');
+        deleteButton.classList.add('delete-task-hidden');
     }
     return
 }
