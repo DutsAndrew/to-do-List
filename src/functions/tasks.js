@@ -1,5 +1,7 @@
 export {
     addTaskController,
+    renderTasks,
+    taskCardController,
 }
 
 import { taskNavController } from './item-navs';
@@ -7,13 +9,14 @@ import { taskNavController } from './item-navs';
 let formOpen = false;
 let myTasks = [];
 let selectedProject;
+let taskKey = 0;
 
 function addTaskController(e) {
     selectedProject = e.path[3].id;
     console.log(selectedProject);
 
     if (formOpen === false && selectedProject != "display") {
-        openTaskForm(selectedProject);
+        openTaskForm();
         formOpen = true;
         return
     } else if (formOpen === true && selectedProject != "display") {
@@ -92,41 +95,79 @@ function storeTaskValues() {
     const taskDescription = document.querySelector('#task').value;
     const taskBuild = "no";
 
-    let newTask = new Task(taskDescription, taskBuild);
-    myTasks.push(newTask);
-    console.log(myTasks);
+    taskKey++;
 
-    buildTaskDiv();
+    taskStorageController(taskDescription, taskBuild);
 }
 
-function Task(description, build) {
+function Task(project, description, build, key) {
+    this.project = project;
     this.description = description;
     this.build = build;
+    this.key = key;
     this.getInfo = function() {
-        return(`${description}, ${taskNumber}`);
+        return(`${taskDescription}, ${taskKey}`);
     }
 }
 
-function buildTaskDiv() {
-    myTasks.forEach(function (item) {
-        let taskDescription = item.description;
-        let taskNumber = item.taskNumber;
+function taskStorageController(taskDescription, taskBuild) {
+    populateTaskStorage(taskDescription, taskBuild);
+    getTaskStorage();
+}
 
+function sendHomeArrayToLocalStorage() {
+    localStorage.setItem("Tasks", JSON.stringify(myTasks));
+}
+
+function populateTaskStorage(taskDescription, taskBuild) {
+    let newTask = new Task(selectedProject, taskDescription, taskBuild, taskKey);
+    console.log(newTask);
+
+    let taskArray = JSON.parse(localStorage.getItem("Tasks"));
+    taskArray.push(newTask);
+    localStorage.setItem("Tasks", JSON.stringify(taskArray));
+}
+
+function getTaskStorage() {
+    let retrievedTasks = JSON.parse(localStorage.getItem("Tasks"));
+
+    myTasks.push(retrievedTasks);
+}
+
+function renderTasks() {
+    if(!localStorage.getItem("Tasks")) {
+        sendHomeArrayToLocalStorage();
+    } else {
+        let retrievedTasks = JSON.parse(localStorage.getItem("Tasks"));
+        for (let i = 0; i < retrievedTasks.length; i++) {
+            myTasks.push(retrievedTasks[i]);
+        }
+        console.log(myTasks);
+    }
+    
+}
+
+function taskCardController() {
+    myTasks.forEach(function (item) {
+        let selectedProject = item.project;
+        let taskDescription = item.description;
+        let taskKey = item.key
         if (item.build === "no") {
             item.build = "yes";
-            createTaskCard(taskDescription, taskNumber);
+            console.log(selectedProject);
+            createTaskCard(selectedProject, taskDescription, taskKey);
         } else if (item.build == "yes") {
             return
         }
     });
 }
 
-function createTaskCard(taskDescription, taskNumber) {
+function createTaskCard(selectedProject, taskDescription, taskKey) {
     const project = document.getElementById(selectedProject);
     console.log(`This task is being appended to ${selectedProject}`);
 
         const taskCard = document.createElement('div');
-            taskCard.classList.add('task-card');
+            taskCard.classList.add('task-card-hidden');
             taskCard.setAttribute('id', `${selectedProject}`);
 
             const taskCardLeft = document.createElement('div');

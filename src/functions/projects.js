@@ -211,8 +211,6 @@ function addProjectNav(projectTitle, projectDescription, projectPriority) {
 }
 
 function storeFormValues() {
-    console.log('Item is being added to the page!');
-
     const projectTitle = document.querySelector('#title').value;
     const projectDescription = document.querySelector('#description').value;
     const projectDue = document.querySelector('#due').value;
@@ -220,7 +218,7 @@ function storeFormValues() {
 
     projectKey++;
 
-    storageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
+    projectStorageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
 }
 
 function Project(title, description, due, priority, build, key) {
@@ -235,7 +233,7 @@ function Project(title, description, due, priority, build, key) {
     };
 }
 
-function storageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
+function projectStorageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
     if(!localStorage.getItem(`${projectTitle}`)) {
         populateStorage(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
         getLocalStorage(projectTitle);
@@ -255,23 +253,16 @@ function getLocalStorage(projectTitle) {
     let retrievedProject = JSON.parse(getProject);
 
     myProjects.push(retrievedProject);
-    console.log(myProjects);
-    
     projectCardController();
 }
 
 // For adding ALL projects from local storage to page
-function renderProjects(retrievedProject) {
-    console.log(retrievedProject);
-
-   // Use this function when loading home or on first load -- from getLocalStorage, project.js
+function renderProjects() {
     for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
         let value = localStorage.getItem(key);
         let retrievedProject = JSON.parse(value);
-        console.log(retrievedProject);
         myProjects.push(retrievedProject);
-        console.log(myProjects);
     } 
 }
 
@@ -299,7 +290,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
     const projectDiv = document.createElement('div');
         projectDiv.classList.add('project-divs');
-        projectDiv.setAttribute('id', `${projectTitle}${projectPriority}`);
+        projectDiv.setAttribute('id', `${projectTitle}`);
         projectDiv.classList.add(`${projectKey}`)
         
         const projectDisplayContainer = document.createElement('div');
@@ -323,7 +314,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
                     // Duplicate created before adding class, so that dup, doesn't have the same class
                     let dupProject = projectTitleDisplay.cloneNode(true);
-                        dupProject.setAttribute('id', projectTitle);
+                        dupProject.setAttribute('id', `${projectTitle} Dup`);
                         dupProject.classList.add('dup-project-title');
 
                 projectTitleDisplay.classList.add('project-display-title-text');
@@ -397,9 +388,6 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
             projectDisplayContainer.appendChild(editProjectButton);
             projectDisplayContainer.appendChild(deleteProjectButton);        
 
-        // function to style project border with priority color
-
-
         projectDiv.appendChild(projectDisplayContainer);
 
     display.appendChild(projectDiv);
@@ -414,6 +402,7 @@ function calculateDaysLeft(today, due) {
 
 function viewProject(e) {
     let projectToDisplayId = e.composedPath()[3].id;
+    console.log(projectToDisplayId);
 
     if (projectToDisplayId != "display") {
         const allProjects = document.querySelectorAll('.project-divs');
@@ -421,6 +410,7 @@ function viewProject(e) {
             project.classList.remove('project-divs');
             project.classList.add('project-divs-hidden');
         });
+        
         const projectToDisplay = document.getElementById(`${projectToDisplayId}`);
             projectToDisplay.classList.remove('project-divs-hidden');
             projectToDisplay.classList.add('project-divs');

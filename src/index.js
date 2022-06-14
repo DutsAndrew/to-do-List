@@ -1,7 +1,6 @@
 // Plug-ins
 import { compareAsc, format } from 'date-fns';
 
-// All functions for the To-do list to work
 import { loadHome } from './functions/load-home';
 import { checkIfStorageIsAvailable } from './functions/local-storage';
 import { headerLoad } from './pages/header';
@@ -11,8 +10,9 @@ import { addProjectController } from './functions/projects';
 import { displayLoad } from './pages/display';
 import { projectCardController } from './functions/projects';
 import { renderProjects } from './functions/projects';
+import { renderTasks } from './functions/tasks';
+import { taskCardController } from './functions/tasks';
 
-// All CSS style sheets for design
 import './stylesheets/header.css';
 import './stylesheets/sidebar.css';
 import './stylesheets/todos.css';
@@ -27,10 +27,12 @@ function loadPage() {
     checkIfStorageIsAvailable();
     renderProjects();
     projectCardController();
+    renderTasks();
+    taskCardController();
 };
 
 loadPage();
-console.log(localStorage);
+// localStorage.clear();
 
 // Event Listeners for button clicks on header
     const menuButton = document.querySelector('.menu-button');

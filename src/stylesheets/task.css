@@ -66,6 +66,10 @@
 }
 
 /* task bar that gets added to project nav */
+.task-card-hidden {
+    display: none;
+    visibility: hidden;
+}
 
 .task-card {
     display: flex;
