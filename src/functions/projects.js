@@ -406,11 +406,15 @@ function viewProject(e) {
 
     if (projectToDisplayId != "display") {
         const allProjects = document.querySelectorAll('.project-divs');
-        allProjects.forEach(project => {
-            project.classList.remove('project-divs');
-            project.classList.add('project-divs-hidden');
-        });
-        
+            allProjects.forEach(project => {
+                project.classList.remove('project-divs');
+                project.classList.add('project-divs-hidden');
+            });
+        const allTasks = document.querySelectorAll('.task-card-hidden');
+            allTasks.forEach(task => {
+                task.classList.remove('task-card-hidden');
+                task.classList.add('task-card');
+            })
         const projectToDisplay = document.getElementById(`${projectToDisplayId}`);
             projectToDisplay.classList.remove('project-divs-hidden');
             projectToDisplay.classList.add('project-divs');
