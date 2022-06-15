@@ -249,10 +249,9 @@ function populateStorage(projectTitle, projectDescription, projectDue, priority,
 }
 
 function getLocalStorage(projectTitle) {
-    let getProject = window.localStorage.getItem(projectTitle);
-    let retrievedProject = JSON.parse(getProject);
+    let getProject = JSON.parse(localStorage.getItem(`${projectTitle}`));
 
-    myProjects.push(retrievedProject);
+    myProjects.push(getProject);
     projectCardController();
 }
 
@@ -260,10 +259,12 @@ function getLocalStorage(projectTitle) {
 function renderProjects() {
     for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
+        console.log(key);
         let value = localStorage.getItem(key);
         let retrievedProject = JSON.parse(value);
         myProjects.push(retrievedProject);
-    } 
+    }
+    console.log(myProjects);
 }
 
 function projectCardController() {
@@ -274,8 +275,9 @@ function projectCardController() {
         let projectPriority = item.priority;
         let projectKey = item.key;
 
-        if (item.build == "no") {
-            item.build = "yes";
+        if (document.getElementById(`${projectTitle}`)) {
+            return
+        } else if (item.build == "no" && !document.getElementById(`${projectTitle}`)) {
             createProjectCard(projectTitle, projectDescription, projectDue, projectPriority, projectKey);
             assignPriorityColors(projectTitle, projectPriority);
         } else if (item.build == "yes") {

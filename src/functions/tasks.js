@@ -97,7 +97,9 @@ function storeTaskValues() {
 
     taskKey++;
 
-    taskStorageController(taskDescription, taskBuild);
+    populateTaskStorage(taskDescription, taskBuild);
+    getLocalStorage();
+    taskCardController();
 }
 
 function Task(project, description, build, key) {
@@ -110,15 +112,6 @@ function Task(project, description, build, key) {
     }
 }
 
-function taskStorageController(taskDescription, taskBuild) {
-    populateTaskStorage(taskDescription, taskBuild);
-    getTaskStorage();
-}
-
-function sendHomeArrayToLocalStorage() {
-    localStorage.setItem("Tasks", JSON.stringify(myTasks));
-}
-
 function populateTaskStorage(taskDescription, taskBuild) {
     let newTask = new Task(selectedProject, taskDescription, taskBuild, taskKey);
     console.log(newTask);
@@ -128,15 +121,16 @@ function populateTaskStorage(taskDescription, taskBuild) {
     localStorage.setItem("Tasks", JSON.stringify(taskArray));
 }
 
-function getTaskStorage() {
-    let retrievedTasks = JSON.parse(localStorage.getItem("Tasks"));
+function getLocalStorage() {
+    let getTasks = window.localStorage.getItem("Tasks");
+    let retrievedTasks = JSON.parse(getTasks);
 
     myTasks.push(retrievedTasks);
 }
 
 function renderTasks() {
     if(!localStorage.getItem("Tasks")) {
-        sendHomeArrayToLocalStorage();
+        return
     } else {
         let retrievedTasks = JSON.parse(localStorage.getItem("Tasks"));
         for (let i = 0; i < retrievedTasks.length; i++) {
@@ -151,8 +145,7 @@ function taskCardController() {
         let selectedProject = item.project;
         let taskDescription = item.description;
         let taskKey = item.key
-        if (item.build === "no") {
-            item.build = "yes";
+        if (item.build == "no") {
             createTaskCard(selectedProject, taskDescription, taskKey);
         } else if (item.build == "yes") {
             return

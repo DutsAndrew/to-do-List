@@ -7,7 +7,6 @@ let projectDropDownOpen = false;
 let completedDropDownOpen = false;
 
 function loadSideBar() {
-    console.log('Sidebar is now opening.... Loading...');
     const content = document.querySelector('#content');
 
         const sidebar = document.createElement('div');

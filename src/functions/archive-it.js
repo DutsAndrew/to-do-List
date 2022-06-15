@@ -33,6 +33,11 @@ function completeIt(e) {
                     }
                 }
             localStorage.setItem('Tasks', JSON.stringify(retrievedTasks));
+
+            const removeAllDivs = document.querySelectorAll(`#${findId}`);
+                removeAllDivs.forEach(div => {
+                    div.remove();
+                })
         } else {
             alert("This project will not be completed");
             return
