@@ -259,10 +259,8 @@ function getLocalStorage(projectTitle) {
 function renderProjects() {
     for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
-        console.log(key);
         let value = localStorage.getItem(key);
-        let retrievedProject = JSON.parse(value);
-        myProjects.push(retrievedProject);
+        myProjects.push(JSON.parse(value));
     }
     console.log(myProjects);
 }

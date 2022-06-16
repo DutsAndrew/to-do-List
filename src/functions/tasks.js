@@ -116,9 +116,16 @@ function populateTaskStorage(taskDescription, taskBuild) {
     let newTask = new Task(selectedProject, taskDescription, taskBuild, taskKey);
     console.log(newTask);
 
-    let taskArray = JSON.parse(localStorage.getItem("Tasks"));
-    taskArray.push(newTask);
-    localStorage.setItem("Tasks", JSON.stringify(taskArray));
+    if (!localStorage.getItem("Tasks")) {
+        localStorage.setItem("Tasks");
+        let taskArray = JSON.parse(localStorage.getItem("Tasks"));
+        taskArray.push(newTask);
+        localStorage.setItem("Tasks", JSON.stringify(taskArray));
+    } else if (localStorage.getItem("Tasks")) {
+        let taskArray = JSON.parse(localStorage.getItem("Tasks"));
+        taskArray.push(newTask);
+        localStorage.setItem("Tasks", JSON.stringify(taskArray));
+    }
 }
 
 function getLocalStorage() {
@@ -129,7 +136,7 @@ function getLocalStorage() {
 }
 
 function renderTasks() {
-    if(!localStorage.getItem("Tasks")) {
+    if (!localStorage.getItem("Tasks")) {
         return
     } else {
         let retrievedTasks = JSON.parse(localStorage.getItem("Tasks"));
@@ -137,7 +144,6 @@ function renderTasks() {
             myTasks.push(retrievedTasks[i]);
         }
     }
-    
 }
 
 function taskCardController() {
