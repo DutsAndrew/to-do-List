@@ -97,9 +97,7 @@ function storeTaskValues() {
 
     generateTaskKey();
 
-    populateTaskStorage(taskDescription, taskBuild);
-    renderTasks();
-    taskCardController();
+    taskStorageController(taskDescription, taskBuild);
 }
 
 function Task(project, description, build, key) {
@@ -112,17 +110,21 @@ function Task(project, description, build, key) {
     }
 }
 
-function populateTaskStorage(taskDescription, taskBuild) {
+function taskStorageController(taskDescription, taskBuild) {
     let newTask = new Task(selectedProject, taskDescription, taskBuild, taskKey);
     console.log(newTask)
 
     if (!localStorage.getItem("Tasks")) {
-        localStorage.setItem("Tasks", JSON.stringify(newTask));
+        myTasks.push(newTask);
+        localStorage.setItem("Tasks", JSON.stringify(myTasks));
+        taskCardController();
         return;
     } else if (localStorage.getItem("Tasks")) {
         let taskArray = JSON.parse(localStorage.getItem("Tasks"));
         taskArray.push(newTask);
         localStorage.setItem("Tasks", JSON.stringify(taskArray));
+        renderTasks();
+        taskCardController();
         return;
     }
 }
@@ -149,7 +151,6 @@ function taskCardController() {
             return
         }
     });
-    console.log(myTasks);
 }
 
 function createTaskCard(selectedProject, taskDescription, taskKey) {
@@ -224,13 +225,16 @@ function deleteTask(e) {
     selectedTask.remove();
 
     let taskDescription = (e.composedPath()[2].childNodes[1].childNodes[0].textContent);
+    let taskKey;
+    console.log(selectedTask);
 
     let _findTask = myTasks.findIndex(function(task, index) {
         if (task.description == `${taskDescription}`) {
             return true;
         }
     });
-    myTasks.splice(_findTask, 1);
+    // myTasks.splice(_findTask, 1);
+    console.log(localStorage.Tasks)
 }
 
 function generateTaskKey() {
@@ -240,6 +244,5 @@ function generateTaskKey() {
     for (let i = 0; i < 5; i++) {
         taskKey += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    console.log(taskKey);
     return taskKey;
 }
