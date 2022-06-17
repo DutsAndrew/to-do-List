@@ -460,6 +460,7 @@ function deleteProject(e) {
     let findId;
     let projectDup;
     let targetElement = e.composedPath()[2];
+    let targetElementId = e.composedPath()[2].id;
 
     findId = e.composedPath()[1].id;
     projectDup = document.getElementById(findId);
@@ -476,6 +477,18 @@ function deleteProject(e) {
     });
     myProjects.splice(_findTitle, 1);
     localStorage.removeItem(`${projectTitle}`);
+
+    // Searches for and removes tasks that belong to said project
+    let storedTasks = JSON.parse(localStorage.getItem("Tasks"));
+    for (let i = 0; i < storedTasks.length; i++) {
+        if (storedTasks[i].project == targetElementId) {
+            storedTasks.splice(i, 1);
+            i--;
+        } else {
+            continue;
+        }
+    }
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
 }
 
 function hideTasksOnLoad() {

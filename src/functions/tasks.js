@@ -160,6 +160,7 @@ function createTaskCard(selectedProject, taskDescription, taskKey) {
             taskCard.classList.add('task-card');
             taskCard.setAttribute('id', `${selectedProject}`);
             taskCard.classList.add(`${selectedProject}-${taskKey}`);
+            taskCard.classList.add(`${taskKey}`);
 
             const taskCardLeft = document.createElement('div');
                 taskCardLeft.classList.add('task-card-left');
@@ -225,16 +226,24 @@ function deleteTask(e) {
     selectedTask.remove();
 
     let taskDescription = (e.composedPath()[2].childNodes[1].childNodes[0].textContent);
-    let taskKey;
-    console.log(selectedTask);
+    let taskKey = e.composedPath()[2].classList[1];
 
     let _findTask = myTasks.findIndex(function(task, index) {
         if (task.description == `${taskDescription}`) {
             return true;
         }
     });
-    // myTasks.splice(_findTask, 1);
-    console.log(localStorage.Tasks)
+    myTasks.splice(_findTask, 1);
+    let storedTasks = JSON.parse(localStorage.getItem("Tasks"));
+    for (let i = 0; i < storedTasks.length; i++) {
+        if (taskKey == storedTasks[i].key) {
+            storedTasks.splice(i, 1);
+            i--;
+        } else {
+            continue;
+        }
+    }
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
 }
 
 function generateTaskKey() {
