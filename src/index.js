@@ -12,6 +12,7 @@ import { projectCardController } from './functions/projects';
 import { renderProjects } from './functions/projects';
 import { renderTasks } from './functions/tasks';
 import { taskCardController } from './functions/tasks';
+import { hideTasksOnLoad } from './functions/projects';
 
 import './stylesheets/header.css';
 import './stylesheets/sidebar.css';
@@ -29,6 +30,7 @@ function loadPage() {
     projectCardController();
     renderTasks();
     taskCardController();
+    hideTasksOnLoad();
 };
 
 loadPage();

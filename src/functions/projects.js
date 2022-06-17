@@ -2,6 +2,7 @@ export {
     addProjectController,
     projectCardController,
     renderProjects,
+    hideTasksOnLoad,
 }
 
 // import { add } from 'date-fns';
@@ -475,4 +476,12 @@ function deleteProject(e) {
     });
     myProjects.splice(_findTitle, 1);
     localStorage.removeItem(`${projectTitle}`);
+}
+
+function hideTasksOnLoad() {
+    const allTasks = document.querySelectorAll('.task-card');
+            allTasks.forEach(task => {
+                task.classList.remove('task-card');
+                task.classList.add('task-card-hidden');
+            })
 }

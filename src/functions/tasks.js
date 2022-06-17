@@ -9,7 +9,7 @@ import { taskNavController } from './item-navs';
 let formOpen = false;
 let myTasks = [];
 let selectedProject;
-let taskKey = 0;
+let taskKey;
 
 function addTaskController(e) {
     selectedProject = e.path[3].id;
@@ -95,10 +95,10 @@ function storeTaskValues() {
     const taskDescription = document.querySelector('#task').value;
     const taskBuild = "no";
 
-    taskKey++;
+    generateTaskKey();
 
     populateTaskStorage(taskDescription, taskBuild);
-    getLocalStorage();
+    renderTasks();
     taskCardController();
 }
 
@@ -114,25 +114,17 @@ function Task(project, description, build, key) {
 
 function populateTaskStorage(taskDescription, taskBuild) {
     let newTask = new Task(selectedProject, taskDescription, taskBuild, taskKey);
-    console.log(newTask);
+    console.log(newTask)
 
     if (!localStorage.getItem("Tasks")) {
-        localStorage.setItem("Tasks");
-        let taskArray = JSON.parse(localStorage.getItem("Tasks"));
-        taskArray.push(newTask);
-        localStorage.setItem("Tasks", JSON.stringify(taskArray));
+        localStorage.setItem("Tasks", JSON.stringify(newTask));
+        return;
     } else if (localStorage.getItem("Tasks")) {
         let taskArray = JSON.parse(localStorage.getItem("Tasks"));
         taskArray.push(newTask);
         localStorage.setItem("Tasks", JSON.stringify(taskArray));
+        return;
     }
-}
-
-function getLocalStorage() {
-    let getTasks = window.localStorage.getItem("Tasks");
-    let retrievedTasks = JSON.parse(getTasks);
-
-    myTasks.push(retrievedTasks);
 }
 
 function renderTasks() {
@@ -151,20 +143,22 @@ function taskCardController() {
         let selectedProject = item.project;
         let taskDescription = item.description;
         let taskKey = item.key
-        if (item.build == "no") {
+        if (item.build == "no" && !document.querySelector(`.${selectedProject}-${taskKey}`)) {
             createTaskCard(selectedProject, taskDescription, taskKey);
         } else if (item.build == "yes") {
             return
         }
     });
+    console.log(myTasks);
 }
 
 function createTaskCard(selectedProject, taskDescription, taskKey) {
     const project = document.getElementById(selectedProject);
 
         const taskCard = document.createElement('div');
-            taskCard.classList.add('task-card-hidden');
+            taskCard.classList.add('task-card');
             taskCard.setAttribute('id', `${selectedProject}`);
+            taskCard.classList.add(`${selectedProject}-${taskKey}`);
 
             const taskCardLeft = document.createElement('div');
                 taskCardLeft.classList.add('task-card-left');
@@ -237,4 +231,15 @@ function deleteTask(e) {
         }
     });
     myTasks.splice(_findTask, 1);
+}
+
+function generateTaskKey() {
+    taskKey = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for (let i = 0; i < 5; i++) {
+        taskKey += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    console.log(taskKey);
+    return taskKey;
 }
