@@ -76,8 +76,6 @@ function projectNavController(e) {
 
 function taskNavController(e) {
     let checkBoxChecked = e.composedPath()[0].checked;
-
-    console.log(checkBoxChecked);
     
     let taskCompleteButton = e.target.nextSibling;
     let editButton = e.target.parentNode.parentNode.childNodes[2].childNodes[0];

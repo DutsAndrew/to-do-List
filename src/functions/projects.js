@@ -235,7 +235,15 @@ function Project(title, description, due, priority, build, key) {
 }
 
 function projectStorageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
-    if(!localStorage.getItem(`${projectTitle}`)) {
+    // Code to prevent whitespaces in ID
+    let projectTitleId;
+    if (projectTitle.includes(" ")) {
+        projectTitleId = projectTitle.replace(/\s+/g, '-');
+    } else {
+        projectTitleId = projectTitle;
+    }
+
+    if(!localStorage.getItem(`${projectTitleId}`)) {
         populateStorage(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
         getLocalStorage(projectTitle);
       } else {
@@ -244,13 +252,29 @@ function projectStorageController(projectTitle, projectDescription, projectDue, 
 }
 
 function populateStorage(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
-    console.log(localStorage);
+    // Code to prevent whitespaces in ID
+    let projectTitleId;
+    if (projectTitle.includes(" ")) {
+        projectTitleId = projectTitle.replace(/\s+/g, '-');
+    } else {
+        projectTitleId = projectTitle;
+    }
+
     let newProject = new Project(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey);
-    localStorage.setItem(`${projectTitle}`, JSON.stringify(newProject));
+
+    localStorage.setItem(`${projectTitleId}`, JSON.stringify(newProject));
 }
 
 function getLocalStorage(projectTitle) {
-    let getProject = JSON.parse(localStorage.getItem(`${projectTitle}`));
+    // Code to prevent whitespaces in ID
+    let projectTitleId;
+    if (projectTitle.includes(" ")) {
+        projectTitleId = projectTitle.replace(/\s+/g, '-');
+    } else {
+        projectTitleId = projectTitle;
+    }
+    
+    let getProject = JSON.parse(localStorage.getItem(`${projectTitleId}`));
 
     myProjects.push(getProject);
     projectCardController();
@@ -260,10 +284,14 @@ function getLocalStorage(projectTitle) {
 function renderProjects() {
     for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
-        let value = localStorage.getItem(key);
-        myProjects.push(JSON.parse(value));
+        if (key === "Tasks") {
+            continue;
+        } else {
+            let value = localStorage.getItem(key);
+            myProjects.push(JSON.parse(value));
+        }
     }
-    console.log(myProjects);
+    console.table(myProjects);
 }
 
 function projectCardController() {
@@ -274,28 +302,37 @@ function projectCardController() {
         let projectPriority = item.priority;
         let projectKey = item.key;
 
+        // Code to prevent whitespaces in ID
+        let projectTitleId;
+        if (projectTitle.includes(" ")) {
+            projectTitleId = projectTitle.replace(/\s+/g, '-');
+        } else {
+            projectTitleId = projectTitle;
+        }
+
+        // Validation for whether a card has been created or not
         if (document.getElementById(`${projectTitle}`)) {
             return
         } else if (item.build == "no" && !document.getElementById(`${projectTitle}`)) {
-            createProjectCard(projectTitle, projectDescription, projectDue, projectPriority, projectKey);
-            assignPriorityColors(projectTitle, projectPriority);
+            createProjectCard(projectTitleId, projectTitle, projectDescription, projectDue, projectPriority, projectKey);
+            assignPriorityColors(projectTitleId, projectPriority);
         } else if (item.build == "yes") {
             return
         }
     });
 }
 
-function createProjectCard(projectTitle, projectDescription, projectDue, projectPriority, projectKey) {
+function createProjectCard(projectTitleId, projectTitle, projectDescription, projectDue, projectPriority, projectKey) {
     const projectHolder = document.querySelector('#project-holder');
     const display = document.querySelector('#display');
 
     const projectDiv = document.createElement('div');
         projectDiv.classList.add('project-divs');
-        projectDiv.setAttribute('id', `${projectTitle}`);
+        projectDiv.setAttribute('id', `${projectTitleId}`);
         projectDiv.classList.add(`${projectKey}`)
         
         const projectDisplayContainer = document.createElement('div');
-            projectDisplayContainer.setAttribute('id', projectTitle);
+            projectDisplayContainer.setAttribute('id', `${projectTitleId}-Display`);
             projectDisplayContainer.classList.add('project-display-container');
 
             const checkBox = document.createElement('input');
@@ -315,7 +352,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
                     // Duplicate created before adding class, so that dup, doesn't have the same class
                     let dupProject = projectTitleDisplay.cloneNode(true);
-                        dupProject.setAttribute('id', `${projectTitle} Dup`);
+                        dupProject.setAttribute('id', `${projectTitleId}-Dup`);
                         dupProject.classList.add('dup-project-title');
 
                 projectTitleDisplay.classList.add('project-display-title-text');
@@ -330,7 +367,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
             const viewProjectContainer = document.createElement('div');
                     viewProjectContainer.classList.add('view-project-container-closed');
-                    viewProjectContainer.setAttribute('id', `View ${projectTitle}`)
+                    viewProjectContainer.setAttribute('id', `View ${projectTitleId}`)
                     viewProjectContainer.onclick = function(e) {
                         viewProject(e);
                     }
@@ -349,7 +386,7 @@ function createProjectCard(projectTitle, projectDescription, projectDue, project
 
             const addTaskContainer = document.createElement('div');
                 addTaskContainer.classList.add('add-task-container-closed');
-                addTaskContainer.setAttribute('id', `add-task ${projectTitle}`);
+                addTaskContainer.setAttribute('id', `add-task ${projectTitleId}`);
                 addTaskContainer.onclick = function(e) {
                     viewProject(e);
                     addTaskController(e);
@@ -403,7 +440,6 @@ function calculateDaysLeft(today, due) {
 
 function viewProject(e) {
     let projectToDisplayId = e.composedPath()[3].id;
-    console.log(projectToDisplayId);
 
     if (projectToDisplayId != "display") {
         const allProjects = document.querySelectorAll('.project-divs');
@@ -462,6 +498,7 @@ function deleteProject(e) {
     let targetElement = e.composedPath()[2];
     let targetElementId = e.composedPath()[2].id;
 
+
     findId = e.composedPath()[1].id;
     projectDup = document.getElementById(findId);
     projectDup.remove();
@@ -470,13 +507,24 @@ function deleteProject(e) {
 
     let projectTitle = (e.composedPath()[1].children[2].textContent);
 
+    // Creates variables to match the local storage and code array to delete both on click
+    let projectTitleIdWithoutSpaces;
+    let projectTitleIdWithoutDashes;
+    if (projectTitle.includes(" ")) {
+        projectTitleIdWithoutSpaces = projectTitle.replace(/\s+/g, '-');
+    } else if (projectTitle.includes("-")) {
+        projectTitleIdWithoutDashes = projectTitle.replace(/\-+/g, ' ');
+    } else {
+        projectTitle = projectTitle;
+    }
+
     let _findTitle = myProjects.findIndex(function(project, index) {
-            if (project.title == `${projectTitle}`) {
+            if (project.title == `${projectTitleIdWithoutDashes}`) {
                 return true;
             }
     });
     myProjects.splice(_findTitle, 1);
-    localStorage.removeItem(`${projectTitle}`);
+    localStorage.removeItem(`${projectTitleIdWithoutSpaces}`);
 
     // Searches for and removes tasks that belong to said project
     let storedTasks = JSON.parse(localStorage.getItem("Tasks"));

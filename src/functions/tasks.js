@@ -8,22 +8,28 @@ import { taskNavController } from './item-navs';
 
 let formOpen = false;
 let myTasks = [];
-let selectedProject;
+let projectTitleId;
 let taskKey;
 
 function addTaskController(e) {
-    selectedProject = e.path[3].id;
-    console.log(selectedProject);
+    let selectedProject = e.path[3].id;
 
-    if (formOpen === false && selectedProject != "display") {
+    // Code to prevent whitespaces in ID
+    if (selectedProject.includes(" ")) {
+        projectTitleId = selectedProject.replace(/\s+/g, '-');
+    } else {
+        projectTitleId = selectedProject;
+    }
+
+    if (formOpen === false && projectTitleId != "display") {
         openTaskForm();
         formOpen = true;
         return
-    } else if (formOpen === true && selectedProject != "display") {
+    } else if (formOpen === true && projectTitleId != "display") {
         closeTaskForm();
         formOpen = false;
         return
-    } else if (selectedProject == "display") {
+    } else if (projectTitleId == "display") {
         return
     } else {
         return
@@ -111,8 +117,7 @@ function Task(project, description, build, key) {
 }
 
 function taskStorageController(taskDescription, taskBuild) {
-    let newTask = new Task(selectedProject, taskDescription, taskBuild, taskKey);
-    console.log(newTask)
+    let newTask = new Task(projectTitleId, taskDescription, taskBuild, taskKey);
 
     if (!localStorage.getItem("Tasks")) {
         myTasks.push(newTask);
@@ -138,28 +143,30 @@ function renderTasks() {
             myTasks.push(retrievedTasks[i]);
         }
     }
+    console.table(myTasks);
 }
 
 function taskCardController() {
     myTasks.forEach(function (item) {
-        let selectedProject = item.project;
+        let projectTitleId = item.project;
         let taskDescription = item.description;
         let taskKey = item.key
-        if (item.build == "no" && !document.querySelector(`.${selectedProject}-${taskKey}`)) {
-            createTaskCard(selectedProject, taskDescription, taskKey);
+
+        if (item.build == "no" && !document.querySelector(`.${projectTitleId}-${taskKey}`)) {
+            createTaskCard(projectTitleId, taskDescription, taskKey);
         } else if (item.build == "yes") {
             return
         }
     });
 }
 
-function createTaskCard(selectedProject, taskDescription, taskKey) {
-    const project = document.getElementById(selectedProject);
+function createTaskCard(projectTitleId, taskDescription, taskKey) {
+    const project = document.getElementById(projectTitleId);
 
         const taskCard = document.createElement('div');
             taskCard.classList.add('task-card');
-            taskCard.setAttribute('id', `${selectedProject}`);
-            taskCard.classList.add(`${selectedProject}-${taskKey}`);
+            taskCard.setAttribute('id', `${projectTitleId}-Task`);
+            taskCard.classList.add(`${projectTitleId}-${taskKey}`);
             taskCard.classList.add(`${taskKey}`);
 
             const taskCardLeft = document.createElement('div');
