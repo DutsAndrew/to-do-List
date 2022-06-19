@@ -39,7 +39,7 @@ function closeAddProjectNav() {
     addProjectFormOpen = false;
 }
 
-function addProjectNav(projectTitle, projectDescription, projectPriority) {
+function addProjectNav(currentProjectTitle, currentProjectDescription) {
     const content = document.querySelector('#content');
 
         const addProjectNav = document.createElement('div');
@@ -63,9 +63,9 @@ function addProjectNav(projectTitle, projectDescription, projectPriority) {
                         inputForTitle.id = "title";
                         inputForTitle.rows = "2";
                         inputForTitle.cols = "50";
-                        if (projectTitle != undefined || null) {
-                            inputForTitle.textContent = `${projectTitle}`;
-                        } else if (projectTitle == undefined || null) {
+                        if (currentProjectTitle != undefined || null) {
+                            inputForTitle.textContent = `${currentProjectTitle}`;
+                        } else if (currentProjectTitle == undefined || null) {
                             inputForTitle.placeholder = "e.g., Read 15 mins, Workout, Make Dinner";
                         }
 
@@ -81,9 +81,9 @@ function addProjectNav(projectTitle, projectDescription, projectPriority) {
                         inputForDescription.id = "description";
                         inputForDescription.rows = "5";
                         inputForDescription.cols = "50";
-                        if (projectDescription != undefined || null) {
-                            inputForDescription.textContent = `${projectDescription}`;
-                        } else if (projectDescription == undefined || null) {
+                        if (currentProjectDescription != undefined || null) {
+                            inputForDescription.textContent = `${currentProjectDescription}`;
+                        } else if (currentProjectDescription == undefined || null) {
                             inputForDescription.placeholder = "Description";
                         }
 
@@ -180,8 +180,15 @@ function addProjectNav(projectTitle, projectDescription, projectPriority) {
                         submitButton.name = "submit";
                         submitButton.value = "Add Project";
                         submitButton.onclick = function() {
-                            storeFormValues();
-                            closeAddProjectNav();
+                            if (addProjectFormOpen === true) {
+                                storeFormValues();
+                                closeAddProjectNav();
+                            } else if (addProjectFormOpen === false) {
+                                saveProjectEdit(currentProjectTitle);
+                            } else {
+                                return;
+                            }
+                            
                         }
 
                     const cancelButton = document.createElement('button');
@@ -461,35 +468,56 @@ function viewProject(e) {
 }
 
 function editProject(e) {
-    let projectTitle = (e.composedPath()[1].children[2].textContent);
-        console.log(projectTitle);
-    let projectDescription = (e.composedPath()[1].children[3].textContent);
-        console.log(projectDescription);
-        console.log(myProjects);
+    let currentProjectTitle = (e.composedPath()[1].children[2].textContent);
+    let currentProjectDescription = (e.composedPath()[1].children[3].textContent);
+ 
+    addProjectNav(currentProjectTitle, currentProjectDescription);
+}
+ 
+function saveProjectEdit(currentProjectTitle) {
+    const newTitle = document.querySelector('#title').value;
+    const newDescription = document.querySelector('#description').value;
+    const newDue = document.querySelector('#due').value;
+    const newBuild = "no";
+ 
+    let projectPriority = priority;
 
-    let findTitle = myProjects.findIndex(function(project) {
-        if (project.title == `${projectTitle}`) {
-            return true;
+    let projectTitleId;
+    if (currentProjectTitle.includes(" ")) {
+        projectTitleId = currentProjectTitle.replace(/\s+/g, '-');
+    } else {
+        projectTitleId = currentProjectTitle;
+    }
+
+    let newProjectTitleId;
+    if (newTitle.includes(" ")) {
+        newProjectTitleId = newTitle.replace(/\s+/g, '-');
+    } else {
+        newProjectTitleId = newTitle;
+    }
+ 
+    let locallyStoredProject = JSON.parse(localStorage.getItem(`${projectTitleId}`));
+        locallyStoredProject.title = newTitle;
+        locallyStoredProject.description = newDescription;
+        locallyStoredProject.due = newDue;
+        locallyStoredProject.priority = projectPriority;
+        locallyStoredProject.build = newBuild;
+    localStorage.setItem(`${newProjectTitleId}`, JSON.stringify(locallyStoredProject));
+    localStorage.removeItem(`${projectTitleId}`);
+
+    // functionality to match tasks back to project
+    let localTasks = JSON.parse(localStorage.getItem('Tasks'));
+        for (let i = 0; i < localTasks.length; i++) {
+            if (localTasks[i].project == projectTitleId) {
+                console.log(localTasks[i].project);
+                localTasks[i].project = newProjectTitleId;
+            } else {
+                continue;
+            }
+           
         }
-    });
-    console.log(findTitle);
-
-    let projectPriority;
-        if (e.composedPath()[2].classList.contains('project-div-priority-1')) {
-            console.log("Project Priority is 1");
-            projectPriority = 1;
-        } else if (e.composedPath()[2].classList.contains('project-div-priority-2')) {
-            console.log("Project Priority is 2");
-            projectPriority = 2;
-        } else if (e.composedPath()[2].classList.contains('project-div-priority-3')) {
-            console.log("Project Priority is 3");
-            projectPriority = 3;
-        } else if (e.composedPath()[2].classList.contains('project-div-priority-4')) {
-            console.log("Project Priority is 4");
-            projectPriority = 4;
-        }
-
-    addProjectNav(projectTitle, projectDescription, projectPriority);
+    localStorage.setItem("Tasks", JSON.stringify(localTasks));
+    location.reload();
 }
 
 function deleteProject(e) {
