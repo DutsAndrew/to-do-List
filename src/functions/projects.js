@@ -509,7 +509,6 @@ function saveProjectEdit(currentProjectTitle) {
     let localTasks = JSON.parse(localStorage.getItem('Tasks'));
         for (let i = 0; i < localTasks.length; i++) {
             if (localTasks[i].project == projectTitleId) {
-                console.log(localTasks[i].project);
                 localTasks[i].project = newProjectTitleId;
             } else {
                 continue;

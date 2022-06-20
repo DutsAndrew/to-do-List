@@ -77,23 +77,16 @@ function projectNavController(e) {
 function taskNavController(e) {
     let checkBoxChecked = e.composedPath()[0].checked;
     
-    let taskCompleteButton = e.target.nextSibling;
     let editButton = e.target.parentNode.parentNode.childNodes[2].childNodes[0];
     let deleteButton = e.target.parentNode.parentNode.childNodes[2].childNodes[1];
 
     if (checkBoxChecked === true) {
-        taskCompleteButton.classList.remove('complete-button-hidden');
-        taskCompleteButton.classList.add('complete-button');
-
         editButton.classList.remove('edit-task-hidden');
         editButton.classList.add('edit-task');
 
         deleteButton.classList.remove('delete-task-hidden');
         deleteButton.classList.add('delete-task');
     } else if (checkBoxChecked === false) {
-        taskCompleteButton.classList.remove('complete-button');
-        taskCompleteButton.classList.add('complete-button-hidden');
-
         editButton.classList.remove('edit-task');
         editButton.classList.add('edit-task-hidden');
 

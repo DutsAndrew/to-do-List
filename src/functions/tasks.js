@@ -44,7 +44,7 @@ function closeTaskForm() {
     formOpen = false;
 }
 
-function openTaskForm() {
+function openTaskForm(taskInformation) {
     const content = document.querySelector('#content');
 
         const taskFormNav = document.createElement('div');
@@ -69,7 +69,13 @@ function openTaskForm() {
                         inputForTask.id = "task";
                         inputForTask.rows = "4";
                         inputForTask.cols = "40";
-                        inputForTask.placeholder = "e.g Step 1, prerequisites:, First...";
+                        if (taskInformation != undefined || null) {
+                            inputForTask.textContent = `${taskInformation}`;
+                        } else if (taskInformation == undefined || null) {
+                            inputForTask.placeholder = "e.g Step 1, prerequisites:, First...";
+                        } else {
+                            return;
+                        }
 
                     const taskSubmitButton = document.createElement('input');
                         taskSubmitButton.classList.add('task-submit-button');
@@ -77,8 +83,14 @@ function openTaskForm() {
                         taskSubmitButton.name = "submit";
                         taskSubmitButton.value = "Add Task";
                         taskSubmitButton.onclick = function() {
-                            storeTaskValues();
-                            closeTaskForm();
+                            if (formOpen === false) {
+                                saveTaskEdit(taskInformation);
+                            } else if (formOpen === true) {
+                                storeTaskValues();
+                                closeTaskForm();
+                            } else {
+                                return;
+                            }
                         }
 
                     const taskCancelButton = document.createElement('button');
@@ -178,13 +190,7 @@ function createTaskCard(projectTitleId, taskDescription, taskKey) {
                     taskCheckBox.classList.add('checkbox-complete');
                     taskCheckBox.addEventListener('change', taskNavController);
 
-                const completeButton = document.createElement('div');
-                    completeButton.setAttribute('id', 'complete-it-button');
-                    completeButton.classList.add('complete-button-hidden');
-                    completeButton.addEventListener('click', taskCompleted);
-
             taskCardLeft.appendChild(taskCheckBox);
-            taskCardLeft.appendChild(completeButton);
 
             const taskCardMiddle = document.createElement('div');
                 taskCardMiddle.classList.add('task-card-middle');
@@ -201,7 +207,9 @@ function createTaskCard(projectTitleId, taskDescription, taskKey) {
                 const editProjectButton = document.createElement('div');
                     editProjectButton.setAttribute('id', 'edit-project-button');
                     editProjectButton.classList.add('edit-task-hidden');
-                    editProjectButton.addEventListener('click', editTask);
+                    editProjectButton.onclick = function(e) {
+                        editTask(e);
+                    }
 
                 const deleteProjectButton = document.createElement('div');
                     deleteProjectButton.setAttribute('id', 'delete-project-button');
@@ -224,8 +232,23 @@ function taskCompleted() {
     
 }
 
-function editTask() {
-    console.log("Edit Task was clicked");
+function editTask(e) {
+    let taskInformation = e.composedPath()[2].children[1].children[0].textContent;
+    openTaskForm(taskInformation);
+}
+
+function saveTaskEdit(taskInformation) {
+    let newTaskInformation = document.querySelector('#task').value;
+    let retrievedTasks = JSON.parse(localStorage.getItem("Tasks"));
+        for (let i = 0; i < retrievedTasks.length; i++) {
+            if (retrievedTasks[i].description == taskInformation) {
+                retrievedTasks[i].description = newTaskInformation;
+            } else {
+                continue;
+            }
+        }
+    localStorage.setItem("Tasks", JSON.stringify(retrievedTasks));
+    location.reload();
 }
 
 function deleteTask(e) {
