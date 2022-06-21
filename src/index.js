@@ -1,5 +1,5 @@
 // Plug-ins
-import { compareAsc, format } from 'date-fns';
+let _ = require("lodash");
 
 import { loadHome } from './functions/load-home';
 import { checkIfStorageIsAvailable } from './functions/local-storage';
@@ -13,6 +13,7 @@ import { renderProjects } from './functions/projects';
 import { renderTasks } from './functions/tasks';
 import { taskCardController } from './functions/tasks';
 import { hideTasksOnLoad } from './functions/projects';
+import { calculateDate } from './functions/dates';
 
 import './stylesheets/header.css';
 import './stylesheets/sidebar.css';
@@ -34,6 +35,7 @@ function loadPage() {
 };
 
 loadPage();
+calculateDate();
 // localStorage.clear();
 
 // Event Listeners for button clicks on header

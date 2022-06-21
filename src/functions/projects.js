@@ -318,9 +318,9 @@ function projectCardController() {
         }
 
         // Validation for whether a card has been created or not
-        if (document.getElementById(`${projectTitle}`)) {
+        if (document.getElementById(`${projectTitleId}`)) {
             return
-        } else if (item.build == "no" && !document.getElementById(`${projectTitle}`)) {
+        } else if (item.build == "no" && !document.getElementById(`${projectTitleId}`)) {
             createProjectCard(projectTitleId, projectTitle, projectDescription, projectDue, projectPriority, projectKey);
             assignPriorityColors(projectTitleId, projectPriority);
         } else if (item.build == "yes") {

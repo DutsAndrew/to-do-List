@@ -37,9 +37,10 @@
 #due-today-holder {
     color: #f2f2f2;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     padding-left: 15px;
-    height: 8vh;
+    align-items: flex-start;
+    height: 10vh;
     width: 14vw;
     overflow-y: scroll;
 }
@@ -66,9 +67,10 @@
 #due-this-week-holder {
     color: #f2f2f2;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     padding-left: 15px;
-    height: 8vh;
+    align-items: flex-start;
+    height: 10vh;
     width: 14vw;
     overflow-y: scroll;
 }
@@ -95,10 +97,11 @@
 #due-this-month-holder {
     color: #f2f2f2;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     padding-left: 15px;
-    height: 8vh;
-    width: 13vw;
+    align-items: flex-start;
+    height: 10vh;
+    width: 14vw;
     overflow-y: scroll;
 }
 
@@ -108,9 +111,11 @@
 }
 
 #project-title {
+    display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     border: 0.5em solid #282828;
+    margin-top: 5%;
 }
 
 .project-title-text {
@@ -167,8 +172,11 @@
 }
 
 #completed-projects {
+    display: flex;
     align-items: center;
+    justify-content: center;
     border: 0.5em solid #282828;
+    margin-top: 5%;
 }
 
 .completed-projects-text {
