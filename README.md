@@ -9,6 +9,13 @@ How to Use:
 
 4. Tasks can be edited or deleted by viewing the corresponding project.
 
+Things I'd change with what I learned:
+
+1. I would've learned how to use and implement localStorage first, I created the app to use an array to store and create cards, which ended up with me still utilizing a pointless array as a 'helper-function' that doesn't help much. This would've decreased the amount of code I wrote by a good amount.
+
+2. More planning, I though I planned well when building this project; however, I wasn't planning what needed to be tested. I was using simple tests to check if things were working, and didn't plan for the more complicated possibilities this app was incorporating.
+
+3. The archive function that I wrote in the beginning, which changed to a more of a complete-it feature should've been scrapped from the beginning. It was a good learning experience to design something that I didn't end up creating, but had I thought it through more I would've been able to realize it wasn't going to be a good feature that was worthwhile to the application.
 
 Things I learned:
 
