@@ -5,8 +5,7 @@ export {
 
 function projectNavController(e) {
     let checkBoxChecked = e.composedPath()[0].checked;
-
-    let completeButton = e.target.nextSibling;
+    // let completeButton = e.target.nextSibling;
     let viewProjectContainer = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
         let viewProjectSvg = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[0];
         let viewProjectText = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
@@ -17,8 +16,8 @@ function projectNavController(e) {
     let deleteButton = e.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
 
     if (checkBoxChecked === true) {
-        completeButton.classList.remove('complete-button-closed');
-        completeButton.classList.add('complete-button-open');
+        // completeButton.classList.remove('complete-button-closed');
+        // completeButton.classList.add('complete-button-open');
 
         viewProjectContainer.classList.remove('view-project-container-closed');
         viewProjectContainer.classList.add('view-project-container-open');
@@ -44,8 +43,8 @@ function projectNavController(e) {
         deleteButton.classList.remove('delete-project-closed');
         deleteButton.classList.add('delete-project-open');
     } else if (checkBoxChecked === false ) {
-        completeButton.classList.remove('complete-button-open');
-        completeButton.classList.add('complete-button-closed');
+        // completeButton.classList.remove('complete-button-open');
+        // completeButton.classList.add('complete-button-closed');
 
         viewProjectContainer.classList.remove('view-project-container-open');
         viewProjectContainer.classList.add('view-project-container-closed');

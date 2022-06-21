@@ -440,13 +440,9 @@ function createProjectCard(projectTitleId, projectTitle, projectDescription, pro
     projectHolder.appendChild(dupProject);
 }
 
-function calculateDaysLeft(today, due) {
-    const differenceInDays = Math.abs(due - today);
-    return differenceInDays / (1000 * 60 * 60 * 24);
-}
-
 function viewProject(e) {
     let projectToDisplayId = e.composedPath()[3].id;
+    console.log(projectToDisplayId);
 
     if (projectToDisplayId != "display") {
         const allProjects = document.querySelectorAll('.project-divs');
@@ -535,23 +531,22 @@ function deleteProject(e) {
     let projectTitle = (e.composedPath()[1].children[2].textContent);
 
     // Creates variables to match the local storage and code array to delete both on click
-    let projectTitleIdWithoutSpaces;
-    let projectTitleIdWithoutDashes;
+    let projectTitleId;
     if (projectTitle.includes(" ")) {
-        projectTitleIdWithoutSpaces = projectTitle.replace(/\s+/g, '-');
+        projectTitleId = projectTitle.replace(/\s+/g, '-');
     } else if (projectTitle.includes("-")) {
-        projectTitleIdWithoutDashes = projectTitle.replace(/\-+/g, ' ');
+        projectTitleId = projectTitle.replace(/\-+/g, ' ');
     } else {
-        projectTitle = projectTitle;
+        projectTitleId = projectTitle;
     }
 
     let _findTitle = myProjects.findIndex(function(project, index) {
-            if (project.title == `${projectTitleIdWithoutDashes}`) {
+            if (project.title == `${projectTitleId}`) {
                 return true;
             }
     });
     myProjects.splice(_findTitle, 1);
-    localStorage.removeItem(`${projectTitleIdWithoutSpaces}`);
+    localStorage.removeItem(`${projectTitleId}`);
 
     // Searches for and removes tasks that belong to said project
     let storedTasks = JSON.parse(localStorage.getItem("Tasks"));

@@ -58,7 +58,7 @@ function createDueCard(projectTitleId, projectDueDate, projectTitle, dueStatus, 
     const dueThisMonthHolder = document.querySelector('#due-this-month-holder');
 
     let newCard = document.createElement('p');
-        newCard.setAttribute('id', `${projectTitleId}`);
+        newCard.setAttribute('id', `${projectTitleId}-${projectDueDate}`);
         newCard.classList.add('due-date-cards');
         newCard.textContent = `${projectTitle}`;
 

@@ -167,7 +167,7 @@ function taskCardController() {
         if (item.build == "no" && !document.querySelector(`.${projectTitleId}-${taskKey}`)) {
             createTaskCard(projectTitleId, taskDescription, taskKey);
         } else if (item.build == "yes") {
-            return
+            return;
         }
     });
 }

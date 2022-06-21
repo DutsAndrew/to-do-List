@@ -83,25 +83,25 @@ function loadSideBar() {
                     projectHolder.setAttribute('id', 'project-holder');
                     projectHolder.classList.add('project-holder-closed');
 
-                const completedProjects = document.createElement('div');
-                    completedProjects.classList.add('side-bar-top-items');
-                    completedProjects.setAttribute('id', 'completed-projects');
-                    completedProjects.addEventListener('click', completedDropDownController);
+                // const completedProjects = document.createElement('div');
+                //     completedProjects.classList.add('side-bar-top-items');
+                //     completedProjects.setAttribute('id', 'completed-projects');
+                //     completedProjects.addEventListener('click', completedDropDownController);
 
-                    const completedProjectsText = document.createElement('p');
-                        completedProjectsText.classList.add('completed-projects-text');
-                        completedProjectsText.textContent = "Completed";
+                //     const completedProjectsText = document.createElement('p');
+                //         completedProjectsText.classList.add('completed-projects-text');
+                //         completedProjectsText.textContent = "Completed";
 
-                        const completedDropDown = document.createElement('div');
-                            completedDropDown.classList.add('completed-drop-down-right-svg');
-                            completedDropDown.setAttribute('id', 'completed-drop-down-svg');
+                //         const completedDropDown = document.createElement('div');
+                //             completedDropDown.classList.add('completed-drop-down-right-svg');
+                //             completedDropDown.setAttribute('id', 'completed-drop-down-svg');
                     
-                        completedProjects.appendChild(completedProjectsText);
-                        completedProjects.appendChild(completedDropDown);
+                //         completedProjects.appendChild(completedProjectsText);
+                //         completedProjects.appendChild(completedDropDown);
 
-                        const completedHolder = document.createElement('div');
-                            completedHolder.setAttribute('id', 'completed-holder');
-                            completedHolder.classList.add('completed-holder-closed');
+                //         const completedHolder = document.createElement('div');
+                //             completedHolder.setAttribute('id', 'completed-holder');
+                //             completedHolder.classList.add('completed-holder-closed');
 
         sidebar.appendChild(dueToday);
         sidebar.appendChild(dueTodayHolder);
@@ -111,8 +111,8 @@ function loadSideBar() {
         sidebar.appendChild(dueThisMonthHolder);
         sidebar.appendChild(projectTitle);
         sidebar.appendChild(projectHolder);
-        sidebar.appendChild(completedProjects);
-        sidebar.appendChild(completedHolder);
+        // sidebar.appendChild(completedProjects);
+        // sidebar.appendChild(completedHolder);
     
     content.appendChild(sidebar);
 }
