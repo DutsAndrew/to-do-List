@@ -1,4 +1,14 @@
 # to-do-List
+How to Use:
+
+1. This Project is a minimalist and simplified design of a To-Do-List. The top bar has all the navigation needed to function. There's a menu bar with 3-lines that can open or hide the sidebar, which displays what projects are due that day, week, or month. It also has a dropdown list that can show all projects.
+
+2. To add a project, you simply click the "+" icon at the top and fill in the necessary information, once that is done it will render to the screen and be saved locally to your computer, which means you can access it from whichever device you use even after exiting out.
+
+3. You can view the project, edit, add a task to that project, or delete the project by clicking the checkbox button, which will display all of those icons/functions.
+
+4. Tasks can be edited or deleted by viewing the corresponding project.
+
 
 Things I learned:
 
@@ -27,3 +37,5 @@ Things I learned:
 12. Got lots of practice with includes() and replace()
 
 13. Using .checked on checkboxes to run code on true/false returns.
+
+14. Preventative measures in not allowing duplicates to be created and or sorting for very specific items.
