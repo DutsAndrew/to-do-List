@@ -242,6 +242,7 @@ function Project(title, description, due, priority, build, key) {
 }
 
 function projectStorageController(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
+
     // Code to prevent whitespaces in ID
     let projectTitleId;
     if (projectTitle.includes(" ")) {
@@ -259,6 +260,7 @@ function projectStorageController(projectTitle, projectDescription, projectDue, 
 }
 
 function populateStorage(projectTitle, projectDescription, projectDue, priority, projectBuild, projectKey) {
+
     // Code to prevent whitespaces in ID
     let projectTitleId;
     if (projectTitle.includes(" ")) {
@@ -273,6 +275,7 @@ function populateStorage(projectTitle, projectDescription, projectDue, priority,
 }
 
 function getLocalStorage(projectTitle) {
+
     // Code to prevent whitespaces in ID
     let projectTitleId;
     if (projectTitle.includes(" ")) {
@@ -538,7 +541,7 @@ function deleteProject(e) {
         projectTitleId = projectTitle;
     }
 
-    let _findTitle = myProjects.findIndex(function(project, index) {
+    let _findTitle = myProjects.findIndex(function(project) {
             if (project.title == `${projectTitleId}`) {
                 return true;
             }
