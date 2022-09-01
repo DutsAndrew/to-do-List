@@ -1,5 +1,10 @@
 # to-do-List
-How to Use:
+
+<strong>Preview:</strong>
+
+![To-do List](https://user-images.githubusercontent.com/94728848/187818873-bdcff9a8-c4b6-4b06-ab43-ebb78929db06.gif)
+
+<strong>How to Use:</strong>
 
 1. This Project is a minimalist and simplified design of a To-Do-List. The top bar has all the navigation needed to function. There's a menu bar with 3-lines that can open or hide the sidebar, which displays what projects are due that day, week, or month. It also has a dropdown list that can show all projects.
 
@@ -9,7 +14,7 @@ How to Use:
 
 4. Tasks can be edited or deleted by viewing the corresponding project.
 
-Things I'd change with what I learned:
+<strong>Things I'd change with what I learned:</strong>
 
 1. I would've learned how to use and implement localStorage first, I created the app to use an array to store and create cards, which ended up with me still utilizing a pointless array as a 'helper-function' that doesn't help much. This would've decreased the amount of code I wrote by a good amount.
 
@@ -17,7 +22,7 @@ Things I'd change with what I learned:
 
 3. The archive function that I wrote in the beginning, which changed to a more of a complete-it feature should've been scrapped from the beginning. It was a good learning experience to design something that I didn't end up creating, but had I thought it through more I would've been able to realize it wasn't going to be a good feature that was worthwhile to the application.
 
-Things I learned:
+<strong>Things I learned:</strong>
 
 1. Local Storage is an easy and nice feature for saving small sets of data. I was having a hard time getting the getItem and setItem functions to work correctly, this lead me to learn more about JSON.parse and JSON.stringify, since local storage uses JSON files to store this information as a string in a data structure. My thoughts going forward is that obviously local storage is small, 5MB is not enough storage to realistically store a whole user profile. But, going forward I can see myself using this feature to store user preferences, like when a user selects a color scheme, font, dark-mode, etc.
 
